@@ -212,29 +212,21 @@ echo.
 goto re
 
 :update
-set "RAW_URL=https://raw.githubusercontent.com/SilkHeaded/WOWCAT/73cd15be163248a585de8339c49d4e1212c4565b/WOWCAT.bat?token=GHSAT0AAAAAADSWGZYPMW4X6G75CQW3MZAK2K6MUYQ"
+set "RAW_URL=https://raw.githubusercontent.com/SilkHeaded/WOWCAT/main/WOWCAT.bat"
 set "TMP_FILE=%TEMP%\WOWCAT_update_%RANDOM%.bat"
-set "LOG_FILE=%TEMP%\WOWCAT_update.log"
-
-echo [%DATE% %TIME%] User %USERNAME% requested update >> "%LOG_FILE%"
-echo Downloading latest WOWCAT from GitHub...
+set "SELF=%~f0"
+echo Downloading update...
 curl -L -A "Mozilla/5.0" "%RAW_URL%" -o "%TMP_FILE%"
 if errorlevel 1 (
-    echo Update failed: download error.
-    echo [%DATE% %TIME%] ERROR: download failed >> "%LOG_FILE%"
+    echo Update failed.
     del "%TMP_FILE%" 2>nul
     goto re
 )
-
-for %%A in ("%~f0") do set "OLD_SIZE=%%~zA"
-for %%A in ("%TMP_FILE%") do set "NEW_SIZE=%%~zA"
-echo [%DATE% %TIME%] OLD_SIZE=%OLD_SIZE% NEW_SIZE=%NEW_SIZE% >> "%LOG_FILE%"
-
-echo Applying update on restart...
-echo [%DATE% %TIME%] Spawning helper to replace script >> "%LOG_FILE%"
-start "" cmd /c "\"%~dp0WOWCAT_update.bat\" \"%~f0\" \"%TMP_FILE%\" \"%LOG_FILE%\""
+echo Replacing on next run...
+copy "%TMP_FILE%" "%SELF%" >nul
+del "%TMP_FILE%" 2>nul
+echo Updated! Restart WOWCAT.
 goto exit
-
 
 :sfc
 echo Checking system file integrity...
@@ -439,6 +431,7 @@ goto :eof
 
 :exit
 exit
+
 
 
 
