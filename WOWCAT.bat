@@ -128,7 +128,7 @@ echo.
 goto re
 
 :report
-start "" "https://www.google.com"
+start "" "https://forms.cloud.microsoft/r/JZecx1MBtJ"
 echo Thanks for giving feedback^! :]
 goto
 
@@ -440,3 +440,4 @@ goto :eof
 
 :exit
 exit
+
