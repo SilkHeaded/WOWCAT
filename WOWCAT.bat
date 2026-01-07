@@ -1,15 +1,20 @@
-:: Please don't copy the code!!
+:: BETA: THIS VERSION IS IN BETA MEANING BUGS WILL BE PRESENT, SEND FEEDBACK HERE:
 :me
 @echo off
 color 0b
 mode con: cols=80 lines=30
 title WOWCAT for Windows 11
 setlocal ENABLEDELAYEDEXPANSION
+set "WOWCAT_VER=1.1.23"
+set "VERSION_URL=https://raw.githubusercontent.com/SilkHeaded/WOWCAT/refs/heads/main/version.txt"
 cls
 echo.
 echo 		          WOWCAT SYSTEMS (v1.1.23)
 echo			            [help] - for info
+echo                               BUGS MAY BE PRESENT
 echo		 _________________________________________________________
+echo.
+call :checkversion
 echo.
 
 :re
@@ -44,6 +49,7 @@ if "%choice%"=="wp" goto wordpad
 if "%choice%"=="wordpad" goto wordpad
 if "%choice%"=="pf" goto printersfolder
 if "%choice%"=="printerfolder" goto printersfolder
+if "%choice%"=="report" goto report
 
 :: command failed to be recognized
 echo   Command failed to be recognized, please use [help] 
@@ -117,8 +123,14 @@ echo # CREDITS
 echo Scriptors: Declan Mignogna
 echo Testers: Arden Mignogna, Bodhi Mignogna, Martin Holland
 echo Command Ideas: Declan Mignogna, Arden Mignogna, Bodhi Mignogna, Martin Holland
+echo Contributors: You! 
 echo.
 goto re
+
+:report
+start "" "https://www.google.com"
+echo Thanks for giving feedback^! :]
+goto
 
 :viewtemp
 set "FOLDER=%TEMP%"
@@ -200,6 +212,31 @@ chkdsk C:
 echo.
 goto re
 
+:update
+set "RAW_URL=https://raw.githubusercontent.com/SilkHeaded/WOWCAT/73cd15be163248a585de8339c49d4e1212c4565b/WOWCAT.bat?token=GHSAT0AAAAAADSWGZYPMW4X6G75CQW3MZAK2K6MUYQ"
+set "TMP_FILE=%TEMP%\WOWCAT_update_%RANDOM%.bat"
+set "LOG_FILE=%TEMP%\WOWCAT_update.log"
+
+echo [%DATE% %TIME%] User %USERNAME% requested update >> "%LOG_FILE%"
+echo Downloading latest WOWCAT from GitHub...
+curl -L -A "Mozilla/5.0" "%RAW_URL%" -o "%TMP_FILE%"
+if errorlevel 1 (
+    echo Update failed: download error.
+    echo [%DATE% %TIME%] ERROR: download failed >> "%LOG_FILE%"
+    del "%TMP_FILE%" 2>nul
+    goto re
+)
+
+for %%A in ("%~f0") do set "OLD_SIZE=%%~zA"
+for %%A in ("%TMP_FILE%") do set "NEW_SIZE=%%~zA"
+echo [%DATE% %TIME%] OLD_SIZE=%OLD_SIZE% NEW_SIZE=%NEW_SIZE% >> "%LOG_FILE%"
+
+echo Applying update on restart...
+echo [%DATE% %TIME%] Spawning helper to replace script >> "%LOG_FILE%"
+start "" cmd /c "\"%~dp0WOWCAT_update.bat\" \"%~f0\" \"%TMP_FILE%\" \"%LOG_FILE%\""
+goto exit
+
+
 :sfc
 echo Checking system file integrity...
 sfc /scannow
@@ -208,42 +245,83 @@ goto re
 
 :textcolor
 echo colors:
-echo     + blue
-echo     + green
-echo     + aqua
-echo     + red
-echo     + purple
-echo     + yellow
-echo     + white
-echo     + gray
-echo     + light blue
-echo     + light green
-echo     + light aqua
-echo     + light red
-echo     + light purple
-echo     + light yellow
+echo     + blue      + green     + aqua      + red
+echo     + purple    + yellow    + white     + gray
+echo     + light blue + light green + light aqua
+echo     + light red + light purple + light yellow
 echo     + bright white
 set /p choice=Enter color: 
 
-if "%choice%"=="green" (color 2) else ^
-if "%choice%"=="blue" (color 1) else ^
-if "%choice%"=="red" (color 4) else ^
-if "%choice%"=="aqua" (color 3) else ^
-if "%choice%"=="purple" (color 5) else ^
-if "%choice%"=="yellow" (color 6) else ^
-if "%choice%"=="white" (color 7) else ^
-if "%choice%"=="gray" (color 8) else ^
-if "%choice%"=="light blue" (color 9) else ^
-if "%choice%"=="light green" (color A) else ^
-if "%choice%"=="light aqua" (color B) else ^
-if "%choice%"=="light red" (color C) else ^
-if "%choice%"=="light purple" (color D) else ^
-if "%choice%"=="light yellow" (color E) else ^
-if "%choice%"=="bright white" (color F) else ^
-if "%choice%"=="default" (color 2) else (
-    echo ERROR 236: INVALID COLOR
-)
+if "%choice%"=="green" (color 2) & goto re
+if "%choice%"=="blue" (color 1) & goto re
+if "%choice%"=="red" (color 4) & goto re
+if "%choice%"=="aqua" (color 3) & goto re
+if "%choice%"=="purple" (color 5) & goto re
+if "%choice%"=="yellow" (color 6) & goto re
+if "%choice%"=="white" (color 7) & goto re
+if "%choice%"=="gray" (color 8) & goto re
+if "%choice%"=="light blue" (color 9) & goto re
+if "%choice%"=="light green" (color A) & goto re
+if "%choice%"=="light aqua" (color B) & goto re
+if "%choice%"=="light red" (color C) & goto re
+if "%choice%"=="light purple" (color D) & goto re
+if "%choice%"=="light yellow" (color E) & goto re
+if "%choice%"=="bright white" (color F) & goto re
+if "%choice%"=="default" (color 0B) & goto re
+echo ERROR 236: INVALID COLOR
 goto re
+
+
+:update
+set "RAW_URL=https://raw.githubusercontent.com/SilkHeaded/WOWCAT/refs/heads/main/WOWCAT.bat"
+set "TMP_FILE=%TEMP%\WOWCAT_update_%RANDOM%.bat"
+set "LOG_FILE=%TEMP%\WOWCAT_update.log"
+
+echo [%DATE% %TIME%] User %USERNAME% requested update >> "%LOG_FILE%"
+
+echo Downloading latest WOWCAT from GitHub...
+curl -L -A "Mozilla/5.0" "%RAW_URL%" -o "%TMP_FILE%"
+if errorlevel 1 (
+    echo Update failed: download error.
+    echo [%DATE% %TIME%] ERROR: download failed >> "%LOG_FILE%"
+    del "%TMP_FILE%" 2>nul
+    goto re
+)
+
+:checkversion
+echo Checking for updates...
+set "TMP_VER=%TEMP%\WOWCAT_ver_%RANDOM%.txt"
+
+curl -L -s -A "Mozilla/5.0" "%VERSION_URL%" -o "%TMP_VER%" >nul 2>&1
+if errorlevel 1 (
+    del "%TMP_VER%" 2>nul
+    goto :eof
+)
+
+set /p REMOTE_VER=<"%TMP_VER%"
+del "%TMP_VER%" 2>nul
+
+if "%REMOTE_VER%"=="" goto :eof
+
+if not "%REMOTE_VER%"=="%WOWCAT_VER%" (
+    set "UPDATE_PROMPT=1"
+    echo.
+    echo    ^<^< UPDATE AVAILABLE ^>^>  %WOWCAT_VER% -^> %REMOTE_VER%
+    echo.
+)
+goto :eof
+
+
+for %%A in ("%~f0") do set "OLD_SIZE=%%~zA"
+for %%A in ("%TMP_FILE%") do set "NEW_SIZE=%%~zA"
+
+echo [%DATE% %TIME%] OLD_SIZE=%OLD_SIZE% NEW_SIZE=%NEW_SIZE% >> "%LOG_FILE%"
+
+echo Applying update on restart...
+echo [%DATE% %TIME%] Spawning helper to replace script >> "%LOG_FILE%"
+
+start "" cmd /c "\"%~dp0WOWCAT_update.bat\" \"%~f0\" \"%TMP_FILE%\" \"%LOG_FILE%\""
+goto exit
 
 :osk
 osk
@@ -339,6 +417,25 @@ if "%iptof%"=="" (
     msg %iptof% "%msg%"
 )
 goto re
+
+:checkversion
+set "TMP_VER=%TEMP%\WOWCAT_ver_%RANDOM%.txt"
+curl -L -s -A "Mozilla/5.0" "%VERSION_URL%" -o "%TMP_VER%" >nul 2>&1
+if errorlevel 1 (
+    del "%TMP_VER%" 2>nul
+    goto :eof
+)
+set /p REMOTE_VER=<"%TMP_VER%"
+del "%TMP_VER%" 2>nul
+if "%REMOTE_VER%"=="" goto :eof
+if not "%REMOTE_VER%"=="%WOWCAT_VER%" (
+    color 0E
+    echo.
+    echo    ^<^< UPDATE AVAILABLE ^>^>  !WOWCAT_VER! -^> !REMOTE_VER!
+    echo.
+    color 0B
+)
+goto :eof
 
 
 :exit
