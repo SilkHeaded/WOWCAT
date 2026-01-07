@@ -11,7 +11,7 @@ cls
 echo.
 echo 		          WOWCAT SYSTEMS (v1.1.23)
 echo			            [help] - for info
-echo                               BUGS MAY BE PRESENT
+echo                        BUGS MAY BE PRESENT
 echo		 _________________________________________________________
 echo.
 call :checkversion
@@ -21,8 +21,7 @@ echo.
 set /p choice="%username% at %TIME% / "
 if "%choice%"=="help" goto help
 if "%choice%"=="leave" goto exit 
-if "%choice%"=="brhtml" goto browser
-if "%choice%"=="countdown" goto countdown
+if "%choice%"=="countdown" goto command_
 if "%choice%"=="brhtml" goto browser
 if "%choice%"=="iamparanoid" goto iamparanoid
 if "%choice%"=="clear" goto clean
@@ -41,7 +40,7 @@ if "%choice%"=="calc" goto calc
 if "%choice%"=="coinflip" goto coinflip
 if "%choice%"=="mag" goto magnify
 if "%choice%"=="qt" goto quicktime
-if "%choice%"=="removeablestorage" goto removeablestorage
+if "%choice%"=="removablestorage" goto removeablestorage
 if "%choice%"=="saa" goto soundandaudio
 if "%choice%"=="soundaudio" goto soundandaudio
 if "%choice%"=="task" goto taskmanager
@@ -50,13 +49,11 @@ if "%choice%"=="wordpad" goto wordpad
 if "%choice%"=="pf" goto printersfolder
 if "%choice%"=="printerfolder" goto printersfolder
 if "%choice%"=="report" goto report
-
-:: command failed to be recognized
-echo   Command failed to be recognized, please use [help] 
+echo  ERROR 332: Command failed to be recognized, please use [help] or send feedback [report] 
 goto re
 
 :command_
-echo  ERROR 302: Command is valid however not yet programmed
+echo  ERROR 333: Command is valid however not yet programmed, you may become a contributor by [report]
 
 
 :help
@@ -440,4 +437,5 @@ goto :eof
 
 :exit
 exit
+
 
