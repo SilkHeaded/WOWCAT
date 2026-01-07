@@ -13,6 +13,6 @@ WOWCAT is not a virus, you may check the source code with [iamparanoid]
 
 WOWCAT may read files only for display and not tracking
 
-WOWCAT is in beta, bugs may occur frequently
+WOWCAT is in BETA, bugs may occur frequently so please don't insult me
 
 Check this by using [help]
