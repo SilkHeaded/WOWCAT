@@ -5,13 +5,13 @@ color 0b
 mode con: cols=80 lines=30
 title WOWCAT for Windows 11
 setlocal ENABLEDELAYEDEXPANSION
-set "WOWCAT_VER=1.2.56"
+set "WOWCAT_VER=2.1"
 set "VERSION_URL=https://raw.githubusercontent.com/SilkHeaded/WOWCAT/refs/heads/main/version.txt"
 cls
 echo.
-echo                     WOWCAT SYSTEMS (v1.2.57)
-echo                        [help] - for info
-echo                       BUGS MAY BE PRESENT
+echo 		          WOWCAT SYSTEMS (v2.1)
+echo			            [help] - for info
+echo                        BUGS MAY BE PRESENT
 echo		 _________________________________________________________
 echo.
 call :checkversion
@@ -51,6 +51,8 @@ if "%choice%"=="wordpad" goto wordpad
 if "%choice%"=="pf" goto printersfolder
 if "%choice%"=="printerfolder" goto printersfolder
 if "%choice%"=="report" goto report
+if "%choice%"=="notepad" goto notepad
+if "%choice%"=="np" goto notepad
 echo  ERROR 332: Command failed to be recognized, please use [help] or send feedback [report] 
 goto re
 
@@ -59,71 +61,7 @@ echo  ERROR 333: Command is valid however not yet programmed, you may become a c
 
 
 :help
-echo - = MANUAL = -
-echo # WHAT ARE WE? 	
-echo WOWCAT is a batch file simular to command prompt
-echo Created by SilkHeaded and being a small project,
-echo thanks for viewing WOWCAT
-echo.
-echo # INFO
-echo WOWCAT is not an actual Windows, MacOS, or Linux software
-echo WOWCAT is not a virus, you may check the source code with [iamparanoid]
-echo WOWCAT may read files only for display and not tracking
-echo WOWCAT is in beta, bugs may occur frequently
-echo.
-echo # COMMANDS 
-echo [leave] - Exit WOWCAT manually
-echo [help] - Look at the manual
-echo [systeminfo] - Look at system information (SOON)
-echo [iamparanoid] - Look at WOWCAT source code
-echo [viewtemp] - Look at all files created by WOWCAT
-echo [countdown] - Countdown from a numeric value (NOT WORKING)
-echo [brhtml] - Pick up data from DuckDuckGo into a HTML
-echo      It may appear blank when it is run, type there
-echo [clear] - Clear all command history in WOWCAT
-echo [ping] - Test internet or local host connectivity
-echo [tasklist] - Show running processes
-echo [shutdown] - Reboot or power off the computer
-echo [windowsdiskcheck] or [wdc] - Run Windows disk check
-echo [systemfilecheck] or [sfc] - Run system file integrity checker
-echo [textcolor] - Change text
-echo      blue
-echo      green
-echo      aqua
-echo      red
-echo      purple
-echo      yellow
-echo      white
-echo      gray
-echo      light blue
-echo      light green
-echo      light aqua
-echo      light red
-echo      light purple
-echo      light yellow
-echo      bright white
-echo [onscreenkeyboard] or [osk] - Self explained
-echo [calc] or [calculator] - Self explained
-echo [coinflip] - Flip a coin (50/50)
-echo [wp] or [wordpad] - Self explained
-echo [firewall] - Windows Firewall
-echo [mag] - Magnify
-echo [printersfolder] - Open printers folder
-echo [qt] - Open QuickTime
-echo [removablestorage] - Look at removable storage
-echo [saa] or [soundaudio] - Sounds and Audio
-echo [securitysystemtool] or [sst] - Open System Security Tool
-echo [task] - Task Manager
-echo [message] or [msg] - Self explained
-echo       MESSAGE - Message imput
-echo       IP - Device IP to send to, leave blank to leave a pop up 
-echo.
-echo # CREDITS
-echo Scriptors: Declan Mignogna
-echo Testers: Arden Mignogna, Bodhi Mignogna, Martin Holland
-echo Command Ideas: Declan Mignogna, Arden Mignogna, Bodhi Mignogna, Martin Holland
-echo Contributors: You! 
-echo.
+start manual.bat
 goto re
 
 :report
@@ -157,7 +95,7 @@ echo Fetching raw HTML
 curl -L -A "Mozilla/5.0" "%l%" -o "%op%"
 if errorlevel 1 (
     echo.
-    echo Search (HTML) unable to download
+    echo ERROR 344: HTML unable to download
     pause
     goto re
 )
@@ -211,23 +149,6 @@ chkdsk C:
 echo.
 goto re
 
-:update
-set "RAW_URL=https://raw.githubusercontent.com/SilkHeaded/WOWCAT/main/WOWCAT.bat"
-set "TMP_FILE=%TEMP%\WOWCAT_update_%RANDOM%.bat"
-set "SELF=%~f0"
-echo Downloading update...
-curl -L -A "Mozilla/5.0" "%RAW_URL%" -o "%TMP_FILE%"
-if errorlevel 1 (
-    echo Update failed.
-    del "%TMP_FILE%" 2>nul
-    goto re
-)
-echo Replacing on next run...
-copy "%TMP_FILE%" "%SELF%" >nul
-del "%TMP_FILE%" 2>nul
-echo Updated! Restart WOWCAT.
-goto exit
-
 :sfc
 echo Checking system file integrity...
 sfc /scannow
@@ -264,20 +185,21 @@ goto re
 
 
 :update
-set "RAW_URL=https://raw.githubusercontent.com/SilkHeaded/WOWCAT/refs/heads/main/WOWCAT.bat"
+set "RAW_URL=https://raw.githubusercontent.com/SilkHeaded/WOWCAT/main/WOWCAT.bat"
 set "TMP_FILE=%TEMP%\WOWCAT_update_%RANDOM%.bat"
-set "LOG_FILE=%TEMP%\WOWCAT_update.log"
-
-echo [%DATE% %TIME%] User %USERNAME% requested update >> "%LOG_FILE%"
-
-echo Downloading latest WOWCAT from GitHub...
+set "SELF=%~f0"
+echo Downloading update...
 curl -L -A "Mozilla/5.0" "%RAW_URL%" -o "%TMP_FILE%"
 if errorlevel 1 (
-    echo Update failed: download error.
-    echo [%DATE% %TIME%] ERROR: download failed >> "%LOG_FILE%"
+    echo ERROR 303: Update failed
     del "%TMP_FILE%" 2>nul
     goto re
 )
+echo Replacing on next run...
+copy "%TMP_FILE%" "%SELF%" >nul
+del "%TMP_FILE%" 2>nul
+echo Updated, please restart
+goto exit
 
 :checkversion
 echo Checking for updates...
@@ -395,7 +317,7 @@ goto re
 if exist "%~f0" (
     start "" notepad.exe "%~f0"
 ) else (
-    echo ERROR 264: Cannot find
+    echo ERROR 288: Can't find WOWCAT
 )
 goto re
 
@@ -428,15 +350,5 @@ if not "%REMOTE_VER%"=="%WOWCAT_VER%" (
 )
 goto :eof
 
-
 :exit
 exit
-
-
-
-
-
-
-
-
-
