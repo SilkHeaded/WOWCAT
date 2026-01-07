@@ -29,6 +29,8 @@ if "%choice%"=="ping" goto ping
 if "%choice%"=="tasklist" goto tasklist
 if "%choice%"=="shutdown" goto shutdown
 if "%choice%"=="windowsdiskcheck" goto chkdsk
+if "%choice%"=="upd" goto update
+if "%choice%"=="update" goto update
 if "%choice%"=="wdc" goto chkdsk
 if "%choice%"=="systemfilecheck" goto sfc
 if "%choice%"=="sfc" goto sfc
@@ -437,5 +439,6 @@ goto :eof
 
 :exit
 exit
+
 
 
