@@ -9,9 +9,9 @@ set "WOWCAT_VER=1.2.56"
 set "VERSION_URL=https://raw.githubusercontent.com/SilkHeaded/WOWCAT/refs/heads/main/version.txt"
 cls
 echo.
-echo 		          WOWCAT SYSTEMS (v1.2.56)
-echo			            [help] - for info
-echo                        BUGS MAY BE PRESENT
+echo                     WOWCAT SYSTEMS (v1.2.56)
+echo                        [help] - for info
+echo                       BUGS MAY BE PRESENT
 echo		 _________________________________________________________
 echo.
 call :checkversion
@@ -431,6 +431,7 @@ goto :eof
 
 :exit
 exit
+
 
 
 
