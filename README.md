@@ -1,4 +1,3 @@
-- = MANUAL = -
 # WHAT IS IT? 	
 WOWCAT is a batch file simular to command prompt
 
