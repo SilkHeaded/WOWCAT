@@ -83,11 +83,9 @@ if "%q%"=="" (
     goto re
 )
 
-REM replace spaces with + for the URL
 set "q=%q: =+%"
 set "l=https://duckduckgo.com/html/?q=%q%"
 
-REM remember last output file
 set "op=%TEMP%\LMAOWOWCAT2913%RANDOM%HTML_temp%RANDOM%.html"
 set "last_op=%op%"
 
@@ -352,5 +350,6 @@ goto :eof
 
 :exit
 exit
+
 
 
