@@ -5,7 +5,7 @@ color 0b
 mode con: cols=80 lines=30
 title WOWCAT for Windows 11
 setlocal ENABLEDELAYEDEXPANSION
-set "WOWCAT_VER=2.1"
+set "WOWCAT_VER=2.2"
 set "VERSION_URL=https://raw.githubusercontent.com/SilkHeaded/WOWCAT/refs/heads/main/version.txt"
 cls
 echo.
@@ -350,6 +350,7 @@ goto :eof
 
 :exit
 exit
+
 
 
 
