@@ -1,5 +1,5 @@
 - = MANUAL = -
-# WHAT ARE WE? 	
+# WHAT IS IT? 	
 WOWCAT is a batch file simular to command prompt
 
 Created by SilkHeaded and being a small project,
@@ -16,3 +16,7 @@ WOWCAT may read files only for display and not tracking
 WOWCAT is in BETA, bugs may occur frequently so please don't insult me
 
 Check this by using [help]
+
+You don't have to download this, it was made for fun
+
+WOWCAT currently only works for Windows 11
