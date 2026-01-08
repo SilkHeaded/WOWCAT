@@ -9,12 +9,12 @@ set "WOWCAT_VER=2.2.4"
 set "VERSION_URL=https://raw.githubusercontent.com/SilkHeaded/WOWCAT/refs/heads/main/version.txt"
 cls
 echo.
-echo              ..     ..  .......  ..     ..  ......   .......  .......
-echo              ..     ..  ..   ..  ..     ..  ..       ..   ..     ..
-echo              ..  .  ..  ..   ..  ..  .  ..  ..       .......     ..
-echo              .. . . ..  ..   ..  .. . . ..  ..       ..   ..     ..
-echo              ...   ...  .......  ...   ...  ......   ..   ..     ..
-echo            ===========================================================
+echo          ..     ..  .......  ..     ..  ......   .......  .......
+echo          ..     ..  ..   ..  ..     ..  ..       ..   ..     ..
+echo          ..  .  ..  ..   ..  ..  .  ..  ..       .......     ..
+echo          .. . . ..  ..   ..  .. . . ..  ..       ..   ..     ..
+echo          ...   ...  .......  ...   ...  ......   ..   ..     ..
+echo        ===========================================================
 echo                                (v%WOWCAT_VER%)
 echo                            [help] - for info
 echo                           BUGS MAY BE PRESENT
@@ -484,6 +484,7 @@ goto :eof
 
 :exit
 exit
+
 
 
 
