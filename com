@@ -1,0 +1,45 @@
+[leave] - Exit WOWCAT manually
+[help] - Look at the manual
+[systeminfo] - Look at system information (SOON)
+[iamparanoid] - Look at WOWCAT source code
+[viewtemp] - Look at all files created by WOWCAT
+[countdown] - Countdown from a numeric value (NOT WORKING)
+[brhtml] - Pick up data from DuckDuckGo into a HTML
+     It may appear blank when it is run, type there
+[clear] - Clear all command history in WOWCAT
+[ping] - Test internet or local host connectivity
+[tasklist] - Show running processes
+[shutdown] - Reboot or power off the computer
+[windowsdiskcheck] or [wdc] - Run Windows disk check
+[systemfilecheck] or [sfc] - Run system file integrity checker
+[textcolor] - Change text
+     blue
+     green
+     aqua
+     red
+     purple
+     yellow
+     white
+     gray
+     light blue
+     light green
+     light aqua
+     light red
+     light purple
+     light yellow
+     bright white
+[onscreenkeyboard] or [osk] - Self explained
+[calc] or [calculator] - Self explained
+[coinflip] - Flip a coin (50/50)
+[wp] or [wordpad] - Self explained
+[firewall] - Windows Firewall
+[mag] - Magnify
+[printersfolder] - Open printers folder
+[qt] - Open QuickTime
+[removablestorage] - Look at removable storage
+[saa] or [soundaudio] - Sounds and Audio
+[securitysystemtool] or [sst] - Open System Security Tool
+[task] - Task Manager
+[message] or [msg] - Self explained
+      MESSAGE - Message imput
+      IP - Device IP to send to, leave blank to leave a pop up
