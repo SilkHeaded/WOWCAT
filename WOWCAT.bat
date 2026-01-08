@@ -3,35 +3,56 @@
 @echo off
 color 0b
 mode con: cols=80 lines=30
+@echo off
+setlocal enabledelayedexpansion
 title WOWCAT for Windows 11
 setlocal ENABLEDELAYEDEXPANSION
+
+:: SETTINGS DO NOT EDIT
 set "WOWCAT_VER=2.2.4"
 set "VERSION_URL=https://raw.githubusercontent.com/SilkHeaded/WOWCAT/refs/heads/main/version.txt"
+set "FORM=https://forms.cloud.microsoft/r/JZecx1MBtJ"
+set "l=https://duckduckgo.com/html/?q=%q%"
+set "q=%q: =+%"
+set "last_op=%op%"
+set "op=%TEMP%\LMAOWOWCAT2913%RANDOM%HTML_temp%RANDOM%.html"
+set "RAW_URL=https://raw.githubusercontent.com/SilkHeaded/WOWCAT/main/WOWCAT.bat"
+set "TMP_FILE=%TEMP%\WOWCAT_update_%RANDOM%.bat"
+set "SELF=%~f0"
+set "TMP_VER=%TEMP%\WOWCAT_ver_%RANDOM%.txt"
+set "UPDATE_PROMPT=1"
+set /a min=1
+set /a max=100
+set /a range=max-min+1
+set /a randomNumber=%RANDOM%%%range + %min%
+
+
 cls
 echo.
-echo          ..     ..  .......  ..     ..  ......   .......  .......
-echo          ..     ..  ..   ..  ..     ..  ..       ..   ..     ..
-echo          ..  .  ..  ..   ..  ..  .  ..  ..       .......     ..
-echo          .. . . ..  ..   ..  .. . . ..  ..       ..   ..     ..
-echo          ...   ...  .......  ...   ...  ......   ..   ..     ..
-echo        ===========================================================
-echo                                (v%WOWCAT_VER%)
+echo           ..     ..  .......  ..     ..  ......   .......  .......
+echo           ..     ..  ..   ..  ..     ..  ..       ..   ..     ..
+echo           ..  .  ..  ..   ..  ..  .  ..  ..       .......     ..
+echo           .. . . ..  ..   ..  .. . . ..  ..       ..   ..     ..
+echo           ...   ...  .......  ...   ...  ......   ..   ..     ..
+echo         ===========================================================
 echo                            [help] - for info
 echo                           BUGS MAY BE PRESENT
 echo		 _________________________________________________________
 echo.
-call :checkversion
-echo.
 
 :re
-set /p choice="%username% at %TIME% / "
+set /p choice="%username% on v%WOWCAT_VER% / "
 if "%choice%"=="help" goto help
 if "%choice%"=="leave" goto exit 
+if "%choice%"=="message" goto msg
+if "%choice%"=="enablewarning" set "msgw=1"
+if "%choice%"=="disablewarning" set "msgw=
 if "%choice%"=="countdown" goto command_
 if "%choice%"=="brhtml" goto browser
 if "%choice%"=="iamparanoid" goto iamparanoid
 if "%choice%"=="clear" goto clean
 if "%choice%"=="ping" goto ping
+if "%choice%"=="direct" goto dir
 if "%choice%"=="tasklist" goto tasklist
 if "%choice%"=="shutdown" goto shutdown
 if "%choice%"=="windowsdiskcheck" goto chkdsk
@@ -59,87 +80,41 @@ if "%choice%"=="printerfolder" goto printersfolder
 if "%choice%"=="report" goto report
 if "%choice%"=="notepad" goto notepad
 if "%choice%"=="np" goto notepad
-if "%choice%"=="commands" goto commands
+if "%choice%"=="com" goto commands
+if "%choice%"=="checkupd" goto checkversion
+if "%choice%"=="hack" goto coms_
 echo  ERROR 332: Command failed to be recognized, please use [help] or send feedback [report] 
 goto re
 
 :command_
-echo  ERROR 333: Command is valid however not yet programmed, you may become a contributor by [report]
+if "%msgw%"=echo  ERROR 333: Command is valid however not yet programmed, you may become a contributor by [report]
 
 :commands
-echo =============================================================================
-echo : COMMANDS 
-echo [leave] - Exit WOWCAT manually
-echo [help] - Look at the manual
-echo [systeminfo] - Look at system information (SOON)
-echo [iamparanoid] - Look at WOWCAT source code
-echo [viewtemp] - Look at all files created by WOWCAT
-echo [countdown] - Countdown from a numeric value (NOT WORKING)
-echo [brhtml] - Pick up data from DuckDuckGo into a HTML
-echo      It may appear blank when it is run, type there
-echo [clear] - Clear all command history in WOWCAT
-echo [ping] - Test internet or local host connectivity
-echo [tasklist] - Show running processes
-echo [shutdown] - Reboot or power off the computer
-echo [windowsdiskcheck] or [wdc] - Run Windows disk check
-echo [systemfilecheck] or [sfc] - Run system file integrity checker
-echo [textcolor] - Change text
-echo      blue
-echo      green
-echo      aqua
-echo      red
-echo      purple
-echo      yellow
-echo      white
-echo      gray
-echo      light blue
-echo      light green
-echo      light aqua
-echo      light red
-echo      light purple
-echo      light yellow
-echo      bright white
-echo [onscreenkeyboard] or [osk] - Self explained
-echo [calc] or [calculator] - Self explained
-echo [coinflip] - Flip a coin (50/50)
-echo [wp] or [wordpad] - Self explained
-echo [firewall] - Windows Firewall
-echo [mag] - Magnify
-echo [printersfolder] - Open printers folder
-echo [qt] - Open QuickTime
-echo [removablestorage] - Look at removable storage
-echo [saa] or [soundaudio] - Sounds and Audio
-echo [securitysystemtool] or [sst] - Open System Security Tool
-echo [task] - Task Manager
-echo [message] or [msg] - Self explained
-echo       MESSAGE - Message imput
-echo       IP - Device IP to send to, leave blank to leave a pop up 
-echo =============================================================================
-pause goto re
+start "" "com.txt"
+goto re
+
+:coms_
+echo %RANDOM%
+goto coms_
+
 :report
-start "" "https://forms.cloud.microsoft/r/JZecx1MBtJ"
+start "" "
+start "" "%FORM%"
 echo Thanks for giving feedback^! :]
-goto
+goto re
 
 :viewtemp
-set "FOLDER=%TEMP%"
-set "QUERY=LMAOWOWCAT2913"
 explorer.exe "search-ms:query=%QUERY%&crumb=location:%FOLDER%"
+goto re
 
 :browser
 set "q="
-set /p q= # 
+set /p q=# 
 if "%q%"=="" (
     echo ERROR 001: No Input
     pause
     goto re
 )
-
-set "q=%q: =+%"
-set "l=https://duckduckgo.com/html/?q=%q%"
-
-set "op=%TEMP%\LMAOWOWCAT2913%RANDOM%HTML_temp%RANDOM%.html"
-set "last_op=%op%"
 
 echo Fetching raw HTML
 curl -L -A "Mozilla/5.0" "%l%" -o "%op%"
@@ -205,52 +180,7 @@ echo ===========================================================================
 pause
 cls
 echo =============================================================================
-echo : COMMANDS 
-echo [leave] - Exit WOWCAT manually
-echo [help] - Look at the manual
-echo [systeminfo] - Look at system information (SOON)
-echo [iamparanoid] - Look at WOWCAT source code
-echo [viewtemp] - Look at all files created by WOWCAT
-echo [countdown] - Countdown from a numeric value (NOT WORKING)
-echo [brhtml] - Pick up data from DuckDuckGo into a HTML
-echo      It may appear blank when it is run, type there
-echo [clear] - Clear all command history in WOWCAT
-echo [ping] - Test internet or local host connectivity
-echo [tasklist] - Show running processes
-echo [shutdown] - Reboot or power off the computer
-echo [windowsdiskcheck] or [wdc] - Run Windows disk check
-echo [systemfilecheck] or [sfc] - Run system file integrity checker
-echo [textcolor] - Change text
-echo      blue
-echo      green
-echo      aqua
-echo      red
-echo      purple
-echo      yellow
-echo      white
-echo      gray
-echo      light blue
-echo      light green
-echo      light aqua
-echo      light red
-echo      light purple
-echo      light yellow
-echo      bright white
-echo [onscreenkeyboard] or [osk] - Self explained
-echo [calc] or [calculator] - Self explained
-echo [coinflip] - Flip a coin (50/50)
-echo [wp] or [wordpad] - Self explained
-echo [firewall] - Windows Firewall
-echo [mag] - Magnify
-echo [printersfolder] - Open printers folder
-echo [qt] - Open QuickTime
-echo [removablestorage] - Look at removable storage
-echo [saa] or [soundaudio] - Sounds and Audio
-echo [securitysystemtool] or [sst] - Open System Security Tool
-echo [task] - Task Manager
-echo [message] or [msg] - Self explained
-echo       MESSAGE - Message imput
-echo       IP - Device IP to send to, leave blank to leave a pop up 
+echo # VIEW COMMANDS USING [com]
 echo =============================================================================
 pause
 cls
@@ -317,9 +247,6 @@ goto re
 
 
 :update
-set "RAW_URL=https://raw.githubusercontent.com/SilkHeaded/WOWCAT/main/WOWCAT.bat"
-set "TMP_FILE=%TEMP%\WOWCAT_update_%RANDOM%.bat"
-set "SELF=%~f0"
 echo Downloading update...
 curl -L -A "Mozilla/5.0" "%RAW_URL%" -o "%TMP_FILE%"
 if errorlevel 1 (
@@ -335,21 +262,19 @@ goto exit
 
 :checkversion
 echo Checking for updates...
-set "TMP_VER=%TEMP%\WOWCAT_ver_%RANDOM%.txt"
 
 curl -L -s -A "Mozilla/5.0" "%VERSION_URL%" -o "%TMP_VER%" >nul 2>&1
 if errorlevel 1 (
+set /p REMOTE_VER=<"%TMP_VER%"
     del "%TMP_VER%" 2>nul
     goto :eof
 )
 
-set /p REMOTE_VER=<"%TMP_VER%"
 del "%TMP_VER%" 2>nul
 
 if "%REMOTE_VER%"=="" goto :eof
 
 if not "%REMOTE_VER%"=="%WOWCAT_VER%" (
-    set "UPDATE_PROMPT=1"
     echo.
     echo    ^<^< UPDATE AVAILABLE ^>^>  %WOWCAT_VER% -^> %REMOTE_VER%
     echo.
@@ -379,10 +304,6 @@ echo [IF IT DID NOT OPEN, YOU MAY BE MISSING THE APP]
 goto re
 
 :coinflip
-set /a min=1
-set /a max=100
-set /a range=max-min+1
-set /a randomNumber=%RANDOM%%%range + %min%
 
 if %randomNumber% GEQ 50 (
     echo coinflip = heads
@@ -484,7 +405,6 @@ goto :eof
 
 :exit
 exit
-
 
 
 
