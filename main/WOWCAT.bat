@@ -1,12 +1,64 @@
 :: BETA: THIS VERSION IS IN BETA MEANING BUGS WILL BE PRESENT, SEND FEEDBACK HERE: https://forms.cloud.microsoft/r/JZecx1MBtJ
-:me
 @echo off
+setlocal EnableDelayedExpansion
+
+rem Path to ini relative to script
+set "INI=%~dp0wowcat.ini"
+
+call :LoadIni "%INI%" "WOWCAT"
+goto :IniLoaded
+
+:LoadIni
+rem %1 = ini file, %2 = section name (e.g. WOWCAT)
+setlocal EnableDelayedExpansion
+set "file=%~1"
+set "section=[%~2]"
+set "inSection="
+
+for /f "usebackq tokens=* delims=" %%L in ("%file%") do (
+    set "line=%%L"
+    rem trim spaces
+    for /f "tokens=* delims= " %%A in ("!line!") do set "line=%%A"
+
+    rem skip blank and comment
+    if "!line!"==""  goto :continue
+    if "!line:~0,1!"==";" goto :continue
+    if "!line:~0,1!"=="#" goto :continue
+
+    rem section marker
+    if "!line:~0,1!"=="[" (
+        if /i "!line!"=="!section!" (
+            set "inSection=1"
+        ) else (
+            set "inSection="
+        )
+        goto :continue
+    )
+
+    rem key=value only when in target section
+    if defined inSection (
+        for /f "tokens=1* delims==" %%K in ("!line!") do (
+            set "key=%%K"
+            set "val=%%L"
+            rem strip the key and '=' from start of line to get value with spaces
+            set "val=!line:*%%K=!"
+            set "val=!val:~1!"
+            endlocal & set "%key%=%val%" & (
+                setlocal EnableDelayedExpansion
+                set "file=%file%"
+                set "section=%section%"
+                set "inSection=%inSection%"
+            )
+        )
+    )
+    :continue
+)
+endlocal & goto :eof
+
+:me
 color 0b
 mode con: cols=80 lines=30
-@echo off
-setlocal enabledelayedexpansion
 title WOWCAT for Windows 11
-setlocal ENABLEDELAYEDEXPANSION
 
 :: SETTINGS DO NOT EDIT
 set "WOWCAT_VER=2.2.4"
@@ -408,3 +460,4 @@ goto :eof
 
 :exit
 exit
+
