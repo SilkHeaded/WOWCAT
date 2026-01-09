@@ -1,0 +1,20 @@
+WOWCAT Disclaimer
+WOWCAT is a beta-stage Windows batch script tool that includes system utilities like ping, tasklist, shutdown, chkdsk, and sfc.
+​
+
+Beta Status and Risks
+This software is provided in beta form, meaning bugs, errors, or unexpected behaviors may occur, 
+potentially leading to system instability, data loss, or other issues. 
+
+Users assume all risks, including any damage to hardware, software, or data from running elevated commands like shutdown or sfc.
+​
+
+No Warranty or Liability
+No warranties are provided—express, implied, or statutory—including merchantability or fitness for a particular purpose. 
+The author disclaims liability for any direct, indirect, incidental, or consequential damages arising from use, misuse, or inability to use WOWCAT.
+​
+
+Usage Guidelines
+Run WOWCAT only on test systems, not production environments. 
+Review and understand all commands before execution, especially those requiring admin privileges.
+Not intended for malicious use; complies with 'ethical' hacking and system administration practices.
