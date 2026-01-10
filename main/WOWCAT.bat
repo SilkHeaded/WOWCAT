@@ -5,7 +5,7 @@ mode con: cols=80 lines=30
 title WOWCAT for Windows 11
 
 :: SETTINGS DO NOT EDIT
-set "WOWCAT_VER=2.2.4"
+set "WOWCAT_VER=2.3.3"
 set "VERSION_URL=https://raw.githubusercontent.com/SilkHeaded/WOWCAT/refs/heads/main/version.txt"
 set "FORM=https://forms.cloud.microsoft/r/JZecx1MBtJ"
 set "q=%q: =+%"
@@ -445,5 +445,6 @@ goto :eof
 
 :exit
 exit
+
 
 
