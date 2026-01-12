@@ -41,5 +41,18 @@
 [securitysystemtool] or [sst] - Open System Security Tool
 [task] - Task Manager
 [message] or [msg] - Self explained
-      MESSAGE - Message imput
-      IP - Device IP to send to, leave blank to leave a pop up
+- MESSAGE - Message imput
+- IP - Device IP to send to, leave blank to leave a pop up
+[rand] - Display random numerals until WOWCAT is closed
+[checkupd] - Check for updates
+[info] - Open information log
+      return
+      ver
+      license
+      disclaimer
+[wow]
+      needed - Open all Github files needed for WOWCAT
+      other - Open all Github files for learning WOWCAT
+      read - Open Github files for copyright, disclaimer, etc.,
+      all - Open all Github files
+
