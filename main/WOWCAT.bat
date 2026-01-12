@@ -45,8 +45,6 @@ set /p choice="%username% on v%WOWCAT_VER% / "
 if "%choice%"=="help" goto help
 if "%choice%"=="leave" goto exit
 if "%choice%"=="msg" goto msg
-if "%choice%"=="enablewarning" set "msgw=1"
-if "%choice%"=="disablewarning" set "msgw=
 if "%choice%"=="countdown" goto command_
 if "%choice%"=="brhtml" goto browser
 if "%choice%"=="iamparanoid" goto iamparanoid
@@ -101,7 +99,7 @@ echo   ; Going to raw GitHub page...
 )
 
 :coms_
-set "RSTR=%random%%random%%random%%random%%random%"
+set "RSTR=%random%"
 echo !RSTR:~0,10!
 goto coms_
 
@@ -413,4 +411,5 @@ goto :eof
 
 :exit
 exit
+
 
