@@ -1,11 +1,13 @@
 :: BETA: THIS VERSION IS IN BETA MEANING BUGS WILL BE PRESENT, SEND FEEDBACK HERE: https://forms.cloud.microsoft/r/JZecx1MBtJ
 :me
+@echo off
 color 0b
 mode con: cols=80 lines=30
 title WOWCAT for Windows 11
+SETLOCAL ENABLEDELAYEDEXPANSION
 
 :: SETTINGS DO NOT EDIT
-set "WOWCAT_VER=2.2.8"
+set "WOWCAT_VER=2.2.4"
 set "VERSION_URL=https://raw.githubusercontent.com/SilkHeaded/WOWCAT/refs/heads/main/version.txt"
 set "FORM=https://forms.cloud.microsoft/r/JZecx1MBtJ"
 set "l=https://duckduckgo.com/html/?q=%q%"
@@ -23,9 +25,6 @@ set /a min=1
 set /a max=100
 set /a range=max-min+1
 set /a randomNumber=%RANDOM%%%range + %min%
-
-:: SETTINGS CAN BE EDITED
-set "
 
 
 echo.
@@ -45,7 +44,7 @@ echo.
 set /p choice="%username% on v%WOWCAT_VER% / "
 if "%choice%"=="help" goto help
 if "%choice%"=="leave" goto exit
-if "%choice%"=="message" goto msg
+if "%choice%"=="msg" goto msg
 if "%choice%"=="enablewarning" set "msgw=1"
 if "%choice%"=="disablewarning" set "msgw=
 if "%choice%"=="countdown" goto command_
@@ -83,7 +82,7 @@ if "%choice%"=="notepad" goto notepad
 if "%choice%"=="np" goto notepad
 if "%choice%"=="com" goto commands
 if "%choice%"=="checkupd" goto checkversion
-if "%choice%"=="hack" goto coms_
+if "%choice%"=="rand" goto coms_
 echo ERROR 332: Command failed to be recognized, please use [help] or send feedback [report]
 goto re
 
@@ -91,11 +90,19 @@ goto re
 if "%msgw%"=echo ERROR 333: Command is valid however not yet programmed, you may become a contributor by [report]
 
 :commands
-start "" "com.txt"
-goto re
+IF EXIST "com.txt" (
+    start "" "com.txt"
+    goto re
+) ELSE (
+echo   ERROR 828: Unable to find "com.txt" so as fallback
+echo   ; Going to raw GitHub page...
+    start "" "https://raw.githubusercontent.com/SilkHeaded/WOWCAT/refs/heads/main/main/com.txt"
+    goto re
+)
 
 :coms_
-echo %RANDOM%
+set "RSTR=%random%%random%%random%%random%%random%"
+echo !RSTR:~0,10!
 goto coms_
 
 :report
