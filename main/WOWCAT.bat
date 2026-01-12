@@ -1,13 +1,14 @@
-:: BETA: THIS VERSION IS IN BETA MEANING BUGS WILL BE PRESENT, SEND FEEDBACK HERE:https://forms.cloud.microsoft/r/JZecx1MBtJ
+:: BETA: THIS VERSION IS IN BETA MEANING BUGS WILL BE PRESENT, SEND FEEDBACK HERE: https://forms.cloud.microsoft/r/JZecx1MBtJ
 :me
 color 0b
 mode con: cols=80 lines=30
 title WOWCAT for Windows 11
 
 :: SETTINGS DO NOT EDIT
-set "WOWCAT_VER=2.3.3"
+set "WOWCAT_VER=2.2.8"
 set "VERSION_URL=https://raw.githubusercontent.com/SilkHeaded/WOWCAT/refs/heads/main/version.txt"
 set "FORM=https://forms.cloud.microsoft/r/JZecx1MBtJ"
+set "l=https://duckduckgo.com/html/?q=%q%"
 set "q=%q: =+%"
 set "last_op=%op%"
 set "op=%TEMP%\LMAOWOWCAT2913%RANDOM%HTML_temp%RANDOM%.html"
@@ -24,8 +25,8 @@ set /a range=max-min+1
 set /a randomNumber=%RANDOM%%%range + %min%
 
 :: SETTINGS CAN BE EDITED
-set "linec=%username% on v%WOWCAT_VER% / "
-set
+set "
+
 
 echo.
 echo           ..     ..  .......  ..     ..  ......   .......  .......
@@ -41,7 +42,7 @@ echo.
 
 
 :re
-set /p choice="%linec%"
+set /p choice="%username% on v%WOWCAT_VER% / "
 if "%choice%"=="help" goto help
 if "%choice%"=="leave" goto exit
 if "%choice%"=="message" goto msg
@@ -88,12 +89,6 @@ goto re
 
 :command_
 if "%msgw%"=echo ERROR 333: Command is valid however not yet programmed, you may become a contributor by [report]
-
-:wowdata
-echo WOWCAT.bat
-echo version     / %WOWCAT_VER%
-echo file format / .bat  Batch of files
-echo  
 
 :commands
 start "" "com.txt"
@@ -157,8 +152,6 @@ ping %host%
 echo.
 goto re
 
-
-
 :tasklist
 echo Listing all active tasks...
 tasklist
@@ -188,38 +181,6 @@ echo ===========================================================================
 pause
 cls
 echo =============================================================================
-echo BSD 3-Clause License
-echo.
-echo Copyright (c) 2026, SilkHeaded
-echo.
-echo Redistribution and use in source and binary forms, with or without
-echo modification, are permitted provided that the following conditions are met:
-echo.
-echo 1. Redistributions of source code must retain the above copyright notice, this
-echo    list of conditions and the following disclaimer.
-echo.
-echo 2. Redistributions in binary form must reproduce the above copyright notice,
-echo    this list of conditions and the following disclaimer in the documentation
-echo    and/or other materials provided with the distribution.
-echo.
-echo 3. Neither the name of the copyright holder nor the names of its
-echo    contributors may be used to endorse or promote products derived from
-echo    this software without specific prior written permission.
-echo.
-echo THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-echo AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-echo IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-echo DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-echo FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-echo DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-echo SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-echo CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-echo OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-echo OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-echo =============================================================================
-pause
-cls
-echo =============================================================================
 echo # VIEW COMMANDS USING [com]
 echo =============================================================================
 pause
@@ -227,7 +188,7 @@ cls
 echo =============================================================================
 echo : CREDITS
 echo Scriptors: SilkHeaded
-echo Testers: SilkHeaded, BlackStarMythology (Ari), Anonymous, anonymus
+echo Testers: SilkHeaded, BlackStarMythology (Ari), Stardust, fourf3ced
 echo Contributors: You!
 echo =============================================================================
 echo.
@@ -239,7 +200,7 @@ echo [1] Shutdown now
 echo [2] Restart
 echo [3] Abort pending shutdown
 set /p shopt=Select option:
-if "%any%"=="1" shutdown /s /t 3
+if "%shopt%"=="1" shutdown /s /t 3
 if "%shopt%"=="2" shutdown /r /t 3
 if "%shopt%"=="3" shutdown /a
 echo.
@@ -445,6 +406,4 @@ goto :eof
 
 :exit
 exit
-
-
 
