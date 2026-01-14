@@ -11,7 +11,7 @@ set "TMP_FILE=%TEMP%\WOWCAT_update_%RANDOM%.bat"
 set "SELF=%~f0"
 set "TMP_VER=%TEMP%\WOWCAT_ver_%RANDOM%.txt"
 set "UPDATE_PROMPT=1"
-set "r=%r%"
+set "r=goto re"
 set "permclrms=echo This color change is session-only." 
 set /a min=1
 set /a max=100
@@ -416,4 +416,5 @@ goto :eof
 
 :exit
 exit
+
 
