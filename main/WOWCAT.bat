@@ -1,7 +1,7 @@
 @echo off
 :: BETA: THIS VERSION IS IN BETA MEANING BUGS WILL BE PRESENT
 
-:: SETTINGS - INTERNAL LOGIC
+:: SETTINGS > EDITING ANYTHING MAY BREAK
 set "WOWCAT_VER=3.0.0"
 set "VERSION_URL=raw.githubusercontent.com"
 set "FORM=forms.cloud.microsoft"
@@ -13,14 +13,12 @@ set "TMP_VER=%TEMP%\WOWCAT_ver_%RANDOM%.txt"
 set "UPDATE_PROMPT=1"
 set "r=%r%"
 set "permclrms=echo This color change is session-only." 
-
-:: MATH FOR RANDOM NUMBER
 set /a min=1
 set /a max=100
 set /a range=max-min+1
 set /a randomNumber=%RANDOM%%%range + %min%
 
-:: USER SETTINGS
+:: MAY BE CHANGED (just know what you are doin
 set "intro=%USERNAME% on WOWCAT v%WOWCAT_VER% #-> "
 set "colorid=0b"
 set "wintitle=WOWCAT for Windows 11"
@@ -418,3 +416,4 @@ goto :eof
 
 :exit
 exit
+
