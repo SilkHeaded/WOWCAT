@@ -109,7 +109,6 @@ echo !RSTR:~0,10!
 goto coms_
 
 :report
-start "" "
 start "" "%FORM%"
 echo Thanks for giving feedback^! :]
 %r%
@@ -416,5 +415,6 @@ goto :eof
 
 :exit
 exit
+
 
 
