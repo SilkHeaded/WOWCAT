@@ -1,47 +1,54 @@
-:: BETA: THIS VERSION IS IN BETA MEANING BUGS WILL BE PRESENT, SEND FEEDBACK HERE: https://forms.cloud.microsoft/r/JZecx1MBtJ
-:me
 @echo off
-color 0b
-mode con: cols=80 lines=30
-title WOWCAT for Windows 11
-SETLOCAL ENABLEDELAYEDEXPANSION
+:: BETA: THIS VERSION IS IN BETA MEANING BUGS WILL BE PRESENT
 
-:: SETTINGS DO NOT EDIT
-set "WOWCAT_VER=2.2.4"
-set "VERSION_URL=https://raw.githubusercontent.com/SilkHeaded/WOWCAT/refs/heads/main/version.txt"
-set "FORM=https://forms.cloud.microsoft/r/JZecx1MBtJ"
-set "l=https://duckduckgo.com/html/?q=%q%"
-set "q=%q: =+%"
-set "last_op=%op%"
-set "op=%TEMP%\LMAOWOWCAT2913%RANDOM%HTML_temp%RANDOM%.html"
-set "RAW_URL=https://raw.githubusercontent.com/SilkHeaded/WOWCAT/main/WOWCAT.bat"
+:: SETTINGS - INTERNAL LOGIC
+set "WOWCAT_VER=3.0.0"
+set "VERSION_URL=raw.githubusercontent.com"
+set "FORM=forms.cloud.microsoft"
+set "com=com.txt"
+set "RAW_URL=raw.githubusercontent.com"
 set "TMP_FILE=%TEMP%\WOWCAT_update_%RANDOM%.bat"
 set "SELF=%~f0"
 set "TMP_VER=%TEMP%\WOWCAT_ver_%RANDOM%.txt"
 set "UPDATE_PROMPT=1"
+set "r=%r%"
+set "permclrms=echo This color change is session-only." 
 
-rem math
+:: MATH FOR RANDOM NUMBER
 set /a min=1
 set /a max=100
 set /a range=max-min+1
 set /a randomNumber=%RANDOM%%%range + %min%
 
+:: USER SETTINGS
+set "intro=%USERNAME% on WOWCAT v%WOWCAT_VER% #-> "
+set "colorid=0b"
+set "wintitle=WOWCAT for Windows 11"
+set "writingapp=notepad.exe"
+set "modecon=mode 120,40"
 
-echo.
-echo           ..     ..  .......  ..     ..  ......   .......  .......
-echo           ..     ..  ..   ..  ..     ..  ..       ..   ..     ..
-echo           ..  .  ..  ..   ..  ..  .  ..  ..       .......     ..
-echo           .. . . ..  ..   ..  .. . . ..  ..       ..   ..     ..
-echo           ...   ...  .......  ...   ...  ......   ..   ..     ..
-echo         ===========================================================
-echo                            [help] - for info
-echo                           BUGS MAY BE PRESENT
-echo		 _________________________________________________________
-echo.
+:me
+cls
+color %colorid%
+%modecon%
+title %wintitle%
+SETLOCAL ENABLEDELAYEDEXPANSION
 
+echo       +--------------------------------------------------------------+
+echo       I   ..     ..  .......  ..     ..  ......   .......  .......   I              WOWCAT.bat:    
+echo       I   ..     ..  ..   ..  ..     ..  ..       ..   ..     ..     I          v%WOWCAT_VER% on %SESSIONNAME%
+echo       I   ..  .  ..  ..   ..  ..  .  ..  ..       .......     ..     I     %DATE% at %TIME%
+echo       I   .. . . ..  ..   ..  .. . . ..  ..       ..   ..     ..     I
+echo       I   ...   ...  .......  ...   ...  ......   ..   ..     ..     I
+echo       I ===========================================================  I
+echo       I                    [help] - for info                         I
+echo       I                   BUGS MAY BE PRESENT                        I
+echo       +--------------------------------------------------------------+
+echo.
 
 :re
-set /p choice="%username% on v%WOWCAT_VER% / "
+set "c="
+set /p c="%intro%"
 if "%choice%"=="help" goto help
 if "%choice%"=="leave" goto exit
 if "%choice%"=="msg" goto msg
@@ -82,7 +89,7 @@ if "%choice%"=="com" goto commands
 if "%choice%"=="checkupd" goto checkversion
 if "%choice%"=="rand" goto coms_
 echo ERROR 332: Command failed to be recognized, please use [help] or send feedback [report]
-goto re
+%r%
 
 :command_
 if "%msgw%"=echo ERROR 333: Command is valid however not yet programmed, you may become a contributor by [report]
@@ -90,12 +97,12 @@ if "%msgw%"=echo ERROR 333: Command is valid however not yet programmed, you may
 :commands
 IF EXIST "com.txt" (
     start "" "com.txt"
-    goto re
+    %r%
 ) ELSE (
 echo   ERROR 828: Unable to find "com.txt" so as fallback
 echo   ; Going to raw GitHub page...
     start "" "https://raw.githubusercontent.com/SilkHeaded/WOWCAT/refs/heads/main/main/com.txt"
-    goto re
+    %r%
 )
 
 :coms_
@@ -107,11 +114,11 @@ goto coms_
 start "" "
 start "" "%FORM%"
 echo Thanks for giving feedback^! :]
-goto re
+%r%
 
 :viewtemp
 explorer.exe "search-ms:query=%QUERY%&crumb=location:%FOLDER%"
-goto re
+%r%
 
 :browser
 set "q="
@@ -119,7 +126,7 @@ set /p q=#
 if "%q%"=="" (
 echo ERROR 001: No Input
 pause
-goto re
+%r%
 )
 
 echo Fetching raw HTML
@@ -128,7 +135,7 @@ if errorlevel 1 (
 echo.
 echo ERROR 344: HTML unable to download
 pause
-goto re
+%r%
 )
 
 echo.
@@ -136,7 +143,7 @@ echo Raw HTML opening in accessible HTML viewer
 
 start "" "%op%"
 echo.
-goto re
+%r%
 
 :iamparanoid
 if exist "%~f0" (
@@ -147,7 +154,7 @@ echo ERROR 264: Cannot find
 
 :clear
 cls
-goto re
+%r%
 
 :ping
 set /p host=Enter host or IP to ping:
@@ -155,13 +162,13 @@ if "%host%"=="" set host=8.8.8.8
 echo Pinging %host%...
 ping %host%
 echo.
-goto re
+%r%
 
 :tasklist
 echo Listing all active tasks...
 tasklist
 echo.
-goto re
+%r%
 
 :help
 color 2
@@ -209,19 +216,19 @@ if "%shopt%"=="1" shutdown /s /t 3
 if "%shopt%"=="2" shutdown /r /t 3
 if "%shopt%"=="3" shutdown /a
 echo.
-goto re
+%r%
 
 :chkdsk
 echo Running chkdsk on system drive...
 chkdsk C:
 echo.
-goto re
+%r%
 
 :sfc
 echo Checking system file integrity...
 sfc /scannow
 echo.
-goto re
+%r%
 
 :textcolor
 echo colors:
@@ -232,24 +239,24 @@ echo + light red + light purple + light yellow
 echo + bright white
 set /p choice=Enter color:
 
-if "%choice%"=="green" (color 2) & goto re
-if "%choice%"=="blue" (color 1) & goto re
-if "%choice%"=="red" (color 4) & goto re
-if "%choice%"=="aqua" (color 3) & goto re
-if "%choice%"=="purple" (color 5) & goto re
-if "%choice%"=="yellow" (color 6) & goto re
-if "%choice%"=="white" (color 7) & goto re
-if "%choice%"=="gray" (color 8) & goto re
-if "%choice%"=="light blue" (color 9) & goto re
-if "%choice%"=="light green" (color A) & goto re
-if "%choice%"=="light aqua" (color B) & goto re
-if "%choice%"=="light red" (color C) & goto re
-if "%choice%"=="light purple" (color D) & goto re
-if "%choice%"=="light yellow" (color E) & goto re
-if "%choice%"=="bright white" (color F) & goto re
-if "%choice%"=="default" (color 0B) & goto re
+if "%choice%"=="green" (color 2) & %r%
+if "%choice%"=="blue" (color 1) & %r%
+if "%choice%"=="red" (color 4) & %r%
+if "%choice%"=="aqua" (color 3) & %r%
+if "%choice%"=="purple" (color 5) & %r%
+if "%choice%"=="yellow" (color 6) & %r%
+if "%choice%"=="white" (color 7) & %r%
+if "%choice%"=="gray" (color 8) & %r%
+if "%choice%"=="light blue" (color 9) & %r%
+if "%choice%"=="light green" (color A) & %r%
+if "%choice%"=="light aqua" (color B) & %r%
+if "%choice%"=="light red" (color C) & %r%
+if "%choice%"=="light purple" (color D) & %r%
+if "%choice%"=="light yellow" (color E) & %r%
+if "%choice%"=="bright white" (color F) & %r%
+if "%choice%"=="default" (color 0B) & %r%
 echo ERROR 236: INVALID COLOR
-goto re
+%r%
 
 
 :update
@@ -258,7 +265,7 @@ curl -L -A "Mozilla/5.0" "%RAW_URL%" -o "%TMP_FILE%"
 if errorlevel 1 (
 echo ERROR 303: Update failed
 del "%TMP_FILE%" 2>nul
-goto re
+%r%
 )
 echo Replacing on next run...
 copy "%TMP_FILE%" "%SELF%" >nul
@@ -302,12 +309,12 @@ goto exit
 :osk
 osk
 echo [IF IT DID NOT OPEN, YOU MAY BE MISSING THE APP]
-goto re
+%r%
 
 :calc
 calc
 echo [IF IT DID NOT OPEN, YOU MAY BE MISSING THE APP]
-goto re
+%r%
 
 :coinflip
 
@@ -316,61 +323,61 @@ echo coinflip = heads
 ) else (
 echo coinflip = tails
 )
-goto re
+%r%
 
 :taskmanager
 taskmgr
-goto re
+%r%
 
 :wordpad
 write
 echo [IF IT DID NOT OPEN, YOU MAY BE MISSING THE APP]
-goto re
+%r%
 
 :notepad
 start notepad
 echo [IF IT DID NOT OPEN, YOU MAY BE MISSING THE APP]
-goto re
+%r%
 
 :firewall
 firewall.cpl
 echo [IF IT DID NOT OPEN, YOU MAY BE MISSING THE APP]
-goto re
+%r%
 
 :magnify
 magnify
 echo [IF IT DID NOT OPEN, YOU MAY BE MISSING THE APP]
-goto re
+%r%
 
 :util
 utilman
 echo [IF IT DID NOT OPEN, YOU MAY BE MISSING THE APP]
-goto re
+%r%
 
 :windowssystemsecuritytool
 syskey
 echo [IF IT DID NOT OPEN, YOU MAY BE MISSING THE APP]
-goto re
+%r%
 
 :soundsandaudio
 mmsys.cpl
 echo [IF IT DID NOT OPEN, YOU MAY BE MISSING THE APP]
-goto re
+%r%
 
 :removablestorage
 ntmsmgr.msc
 echo [IF IT DID NOT OPEN, YOU MAY BE MISSING THE APP]
-goto re
+%r%
 
 :quicktime
 Quicktime.cpl
 echo [IF IT DID NOT OPEN, YOU MAY BE MISSING THE APP]
-goto re
+%r%
 
 :printersfolder
 printers
 echo [IF IT DID NOT OPEN, YOU MAY BE MISSING THE APP]
-goto re
+%r%
 
 :iamparanoid
 if exist "%~f0" (
@@ -378,7 +385,7 @@ start "" notepad.exe "%~f0"
 ) else (
 echo ERROR 288: Can't find WOWCAT
 )
-goto re
+%r%
 
 :msg
 set /p msg=MESSAGE #
@@ -388,7 +395,7 @@ msg * "%msg%"
 ) else (
 msg %iptof% "%msg%"
 )
-goto re
+%r%
 
 :checkversion
 set "TMP_VER=%TEMP%\WOWCAT_ver_%RANDOM%.txt"
@@ -411,5 +418,3 @@ goto :eof
 
 :exit
 exit
-
-
