@@ -2,14 +2,13 @@
 :: BETA: THIS VERSION IS IN BETA MEANING BUGS WILL BE PRESENT
 
 :: SETTINGS > EDITING ANYTHING MAY BREAK
-set "WOWCAT_VER=3.0.0"
-set "VERSION_URL=raw.githubusercontent.com"
-set "FORM=forms.cloud.microsoft"
-set "com=com.txt"
-set "RAW_URL=raw.githubusercontent.com"
-set "TMP_FILE=%TEMP%\WOWCAT_update_%RANDOM%.bat"
+set "SOLAR_VER=3.0.0"
+set "VERSION_URL=https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/ignore/version.txt"
+set "FORM=https://forms.office.com/Pages/ResponsePage.aspx?id=sEuKbhv9NkS8LDHpJyyrQ6Z_qm3l-9dOmHkhDfOrS-xUNUNOVlVKWklJTzNGRkwwN0FNVUREMVNDUy4u"
+set "RAW_URL=https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/main/SOLAR.bat"
+set "TMP_FILE=%TEMP%\SOLAR_update_%RANDOM%.bat"
 set "SELF=%~f0"
-set "TMP_VER=%TEMP%\WOWCAT_ver_%RANDOM%.txt"
+set "TMP_VER=%TEMP%\SOLAR_ver_%RANDOM%.txt"
 set "UPDATE_PROMPT=1"
 set "r=goto re"
 set "permclrms=echo This color change is session-only." 
@@ -18,10 +17,10 @@ set /a max=100
 set /a range=max-min+1
 set /a randomNumber=%RANDOM%%%range + %min%
 
-:: MAY BE CHANGED (just know what you are doin
-set "intro=%USERNAME% on WOWCAT v%WOWCAT_VER% #-> "
+:: MAY BE CHANGED (just know what you are doin)
+set "intro=%USERNAME% on SOLAR v%SOLAR_VER% #-> "
 set "colorid=0b"
-set "wintitle=WOWCAT for Windows 11"
+set "wintitle=SOLAR for Windows 11"
 set "writingapp=notepad.exe"
 set "modecon=mode 120,40"
 
@@ -33,11 +32,11 @@ title %wintitle%
 SETLOCAL ENABLEDELAYEDEXPANSION
 
 echo       +--------------------------------------------------------------+
-echo       I   ..     ..  .......  ..     ..  ......   .......  .......   I              WOWCAT.bat:    
-echo       I   ..     ..  ..   ..  ..     ..  ..       ..   ..     ..     I          v%WOWCAT_VER% on %SESSIONNAME%
-echo       I   ..  .  ..  ..   ..  ..  .  ..  ..       .......     ..     I     %DATE% at %TIME%
-echo       I   .. . . ..  ..   ..  .. . . ..  ..       ..   ..     ..     I
-echo       I   ...   ...  .......  ...   ...  ......   ..   ..     ..     I
+echo       I       _________________   ____       _____ __________        I          SOLAR.bat:                                                                 I     %DATE% at %TIME%
+echo       I      /   _____/\_____  \ |    |     /  _  \\______   \       I           v%SOLAR_VER%
+echo       I      \_____  \  /   |   \|    |    /  /_\  \|       _/       I     %DATE% at %TIME%
+echo       I      /        \/    |    \    |___/    |    \    |   \       I
+echo       I     /_______  /\_______  /_______ \____|__  /____|___/       I             
 echo       I ===========================================================  I
 echo       I                    [help] - for info                         I
 echo       I                   BUGS MAY BE PRESENT                        I
@@ -47,45 +46,45 @@ echo.
 :re
 set "c="
 set /p c="%intro%"
-if "%choice%"=="help" goto help
-if "%choice%"=="leave" goto exit
-if "%choice%"=="msg" goto msg
-if "%choice%"=="countdown" goto command_
-if "%choice%"=="brhtml" goto browser
-if "%choice%"=="iamparanoid" goto iamparanoid
-if "%choice%"=="clear" goto clean
-if "%choice%"=="ping" goto ping
-if "%choice%"=="direct" goto dir
-if "%choice%"=="tasklist" goto tasklist
-if "%choice%"=="shutdown" goto shutdown
-if "%choice%"=="windowsdiskcheck" goto chkdsk
-if "%choice%"=="upd" goto update
-if "%choice%"=="update" goto update
-if "%choice%"=="wdc" goto chkdsk
-if "%choice%"=="systemfilecheck" goto sfc
-if "%choice%"=="sfc" goto sfc
-if "%choice%"=="textcolor" goto textcolor
-if "%choice%"=="onscreenkeyboard" goto osk
-if "%choice%"=="osk" goto osk
-if "%choice%"=="calculator" goto calc
-if "%choice%"=="calc" goto calc
-if "%choice%"=="coinflip" goto coinflip
-if "%choice%"=="mag" goto magnify
-if "%choice%"=="qt" goto quicktime
-if "%choice%"=="removablestorage" goto removeablestorage
-if "%choice%"=="saa" goto soundandaudio
-if "%choice%"=="soundaudio" goto soundandaudio
-if "%choice%"=="task" goto taskmanager
-if "%choice%"=="wp" goto wordpad
-if "%choice%"=="wordpad" goto wordpad
-if "%choice%"=="pf" goto printersfolder
-if "%choice%"=="printerfolder" goto printersfolder
-if "%choice%"=="report" goto report
-if "%choice%"=="notepad" goto notepad
-if "%choice%"=="np" goto notepad
-if "%choice%"=="com" goto commands
-if "%choice%"=="checkupd" goto checkversion
-if "%choice%"=="rand" goto coms_
+if "%c%"=="help" goto help
+if "%c%"=="leave" goto exit
+if "%c%"=="msg" goto msg
+if "%c%"=="countdown" goto command_
+if "%c%"=="brhtml" goto browser
+if "%c%"=="iamparanoid" goto iamparanoid
+if "%c%"=="clear" goto clean
+if "%c%"=="ping" goto ping
+if "%c%"=="direct" goto dir
+if "%c%"=="tasklist" goto tasklist
+if "%c%"=="shutdown" goto shutdown
+if "%c%"=="windowsdiskcheck" goto chkdsk
+if "%c%"=="upd" goto update
+if "%c%"=="update" goto update
+if "%c%"=="wdc" goto chkdsk
+if "%c%"=="systemfilecheck" goto sfc
+if "%c%"=="sfc" goto sfc
+if "%c%"=="textcolor" goto textcolor
+if "%c%"=="onscreenkeyboard" goto osk
+if "%c%"=="osk" goto osk
+if "%c%"=="calculator" goto calc
+if "%c%"=="calc" goto calc
+if "%c%"=="coinflip" goto coinflip
+if "%c%"=="mag" goto magnify
+if "%c%"=="qt" goto quicktime
+if "%c%"=="removablestorage" goto removeablestorage
+if "%c%"=="saa" goto soundandaudio
+if "%c%"=="soundaudio" goto soundandaudio
+if "%c%"=="task" goto taskmanager
+if "%c%"=="wp" goto wordpad
+if "%c%"=="wordpad" goto wordpad
+if "%c%"=="pf" goto printersfolder
+if "%c%"=="printerfolder" goto printersfolder
+if "%c%"=="report" goto report
+if "%c%"=="notepad" goto notepad
+if "%c%"=="np" goto notepad
+if "%c%"=="com" goto commands
+if "%c%"=="checkupd" goto checkversion
+if "%c%"=="rand" goto coms_
 echo ERROR 332: Command failed to be recognized, please use [help] or send feedback [report]
 %r%
 
@@ -99,7 +98,7 @@ IF EXIST "com.txt" (
 ) ELSE (
 echo   ERROR 828: Unable to find "com.txt" so as fallback
 echo   ; Going to raw GitHub page...
-    start "" "https://raw.githubusercontent.com/SilkHeaded/WOWCAT/refs/heads/main/main/com.txt"
+    start "" "https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/main/com.txt"
     %r%
 )
 
@@ -154,7 +153,7 @@ cls
 %r%
 
 :ping
-set /p host=Enter host or IP to ping:
+set /p host=Host or IP:
 if "%host%"=="" set host=8.8.8.8
 echo Pinging %host%...
 ping %host%
@@ -173,19 +172,19 @@ title manual
 cls
 echo =============================================================================
 echo : WHAT ARE WE?
-echo WOWCAT is a batch file simular to command prompt
+echo SOLAR is a batch file simular to command prompt
 echo Created by SilkHeaded and being a small project,
-echo thanks for viewing WOWCAT
+echo thanks for viewing SOLAR
 echo =============================================================================
 pause
 cls
 echo =============================================================================
 echo : INFO
-echo WOWCAT is not an actual Windows, MacOS, or Linux software
-echo WOWCAT is not a virus, you may check the source code with [iamparanoid]
-echo WOWCAT may read files only for display and not tracking
-echo WOWCAT is in beta, bugs may occur frequently
-echo WOWCAT uses MIT license as seen here
+echo SOLAR is not an actual Windows, MacOS, or Linux software
+echo SOLAR is not a virus, you may check the source code with [iamparanoid]
+echo SOLAR may read files only for display and not tracking
+echo SOLAR is in beta, bugs may occur frequently
+echo SOLAR uses MIT license as seen here
 echo =============================================================================
 pause
 cls
@@ -236,22 +235,22 @@ echo + light red + light purple + light yellow
 echo + bright white
 set /p choice=Enter color:
 
-if "%choice%"=="green" (color 2) & %r%
-if "%choice%"=="blue" (color 1) & %r%
-if "%choice%"=="red" (color 4) & %r%
-if "%choice%"=="aqua" (color 3) & %r%
-if "%choice%"=="purple" (color 5) & %r%
-if "%choice%"=="yellow" (color 6) & %r%
-if "%choice%"=="white" (color 7) & %r%
-if "%choice%"=="gray" (color 8) & %r%
-if "%choice%"=="light blue" (color 9) & %r%
-if "%choice%"=="light green" (color A) & %r%
-if "%choice%"=="light aqua" (color B) & %r%
-if "%choice%"=="light red" (color C) & %r%
-if "%choice%"=="light purple" (color D) & %r%
-if "%choice%"=="light yellow" (color E) & %r%
-if "%choice%"=="bright white" (color F) & %r%
-if "%choice%"=="default" (color 0B) & %r%
+if "%c%"=="green" (color 2) & %r%
+if "%c%"=="blue" (color 1) & %r%
+if "%c%"=="red" (color 4) & %r%
+if "%c%"=="aqua" (color 3) & %r%
+if "%c%"=="purple" (color 5) & %r%
+if "%c%"=="yellow" (color 6) & %r%
+if "%c%"=="white" (color 7) & %r%
+if "%c%"=="gray" (color 8) & %r%
+if "%c%"=="light blue" (color 9) & %r%
+if "%c%"=="light green" (color A) & %r%
+if "%c%"=="light aqua" (color B) & %r%
+if "%c%"=="light red" (color C) & %r%
+if "%c%"=="light purple" (color D) & %r%
+if "%c%"=="light yellow" (color E) & %r%
+if "%c%"=="bright white" (color F) & %r%
+if "%c%"=="default" (color 0B) & %r%
 echo ERROR 236: INVALID COLOR
 %r%
 
@@ -284,9 +283,9 @@ del "%TMP_VER%" 2>nul
 
 if "%REMOTE_VER%"=="" goto :eof
 
-if not "%REMOTE_VER%"=="%WOWCAT_VER%" (
+if not "%REMOTE_VER%"=="%SOLAR_VER%" (
 echo.
-echo ^<^< UPDATE AVAILABLE ^>^> %WOWCAT_VER% -^> %REMOTE_VER%
+echo ^<^< UPDATE AVAILABLE ^>^> %SOLAR_VER% -^> %REMOTE_VER%
 echo.
 )
 goto :eof
@@ -300,7 +299,7 @@ echo [%DATE% %TIME%] OLD_SIZE=%OLD_SIZE% NEW_SIZE=%NEW_SIZE% >> "%LOG_FILE%"
 echo Applying update on restart...
 echo [%DATE% %TIME%] Spawning helper to replace script >> "%LOG_FILE%"
 
-start "" cmd /c "\"%~dp0WOWCAT_update.bat\" \"%~f0\" \"%TMP_FILE%\" \"%LOG_FILE%\""
+start "" cmd /c "\"%~dp0SOLAR_update.bat\" \"%~f0\" \"%TMP_FILE%\" \"%LOG_FILE%\""
 goto exit
 
 :osk
@@ -380,7 +379,7 @@ echo [IF IT DID NOT OPEN, YOU MAY BE MISSING THE APP]
 if exist "%~f0" (
 start "" notepad.exe "%~f0"
 ) else (
-echo ERROR 288: Can't find WOWCAT
+echo ERROR 288: Can't find SOLAR
 )
 %r%
 
@@ -395,7 +394,7 @@ msg %iptof% "%msg%"
 %r%
 
 :checkversion
-set "TMP_VER=%TEMP%\WOWCAT_ver_%RANDOM%.txt"
+set "TMP_VER=%TEMP%\SOLAR_ver_%RANDOM%.txt"
 curl -L -s -A "Mozilla/5.0" "%VERSION_URL%" -o "%TMP_VER%" >nul 2>&1
 if errorlevel 1 (
 del "%TMP_VER%" 2>nul
@@ -404,10 +403,10 @@ goto :eof
 set /p REMOTE_VER=<"%TMP_VER%"
 del "%TMP_VER%" 2>nul
 if "%REMOTE_VER%"=="" goto :eof
-if not "%REMOTE_VER%"=="%WOWCAT_VER%" (
+if not "%REMOTE_VER%"=="%SOLAR_VER%" (
 color 0E
 echo.
-echo ^<^< UPDATE AVAILABLE ^>^> !WOWCAT_VER! -^> !REMOTE_VER!
+echo ^<^< UPDATE AVAILABLE ^>^> !SOLAR_VER! -^> !REMOTE_VER!
 echo.
 color 0B
 )
@@ -415,6 +414,5 @@ goto :eof
 
 :exit
 exit
-
 
 
