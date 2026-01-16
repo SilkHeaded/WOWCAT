@@ -55,4 +55,3 @@
       other - Open all Github files for learning WOWCAT
       read - Open Github files for copyright, disclaimer, etc.,
       all - Open all Github files
-
