@@ -21,7 +21,7 @@ set "wintitle=SOLAR for Windows 11"
 set "writingapp=notepad.exe"
 set "modecon=mode 120,40"
 :: SET THIS DIFFERENTLY IF YOU WANT TO IGNORE LINE 25
-set "warningmes=23"
+set "warningmes=1"
 
 if "%warningmes%"=="1" (
 color 0C
@@ -581,5 +581,6 @@ goto re
 
 :exit
 exit
+
 
 
