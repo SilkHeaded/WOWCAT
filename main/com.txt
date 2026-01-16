@@ -1,57 +1,43 @@
-[leave] - Exit WOWCAT manually
+[leave] - Exit SOLAR manually
 [help] - Look at the manual
-[systeminfo] - Look at system information (SOON)
-[iamparanoid] - Look at WOWCAT source code
-[viewtemp] - Look at all files created by WOWCAT
-[countdown] - Countdown from a numeric value (NOT WORKING)
-[brhtml] - Pick up data from DuckDuckGo into a HTML
-     It may appear blank when it is run, type there
-[clear] - Clear all command history in WOWCAT
-[ping] - Test internet or local host connectivity
+[iamparanoid] - View SOLAR source code
+[clear] - Clear screen
+[ping] - Test connectivity (host or IP)
+[direct] or [dir] - List directory contents
 [tasklist] - Show running processes
-[shutdown] - Reboot or power off the computer
-[windowsdiskcheck] or [wdc] - Run Windows disk check
-[systemfilecheck] or [sfc] - Run system file integrity checker
-[textcolor] - Change text
-     blue
-     green
-     aqua
-     red
-     purple
-     yellow
-     white
-     gray
-     light blue
-     light green
-     light aqua
-     light red
-     light purple
-     light yellow
-     bright white
-[onscreenkeyboard] or [osk] - Self explained
-[calc] or [calculator] - Self explained
+[shutdown] - Shutdown, restart, or abort
+[windowsdiskcheck] or [wdc] - Run chkdsk on system drive
+[systemfilecheck] or [sfc] - Run system file checker
+[textcolor] - Change console color
+  blue, green, aqua, red, purple, yellow, white, gray
+  light blue, light green, light aqua, light red
+  light purple, light yellow, bright white, default
+[osk] or [onscreenkeyboard] - Open on-screen keyboard
+[calc] or [calculator] - Open calculator
 [coinflip] - Flip a coin (50/50)
-[wp] or [wordpad] - Self explained
-[firewall] - Windows Firewall
-[mag] - Magnify
-[printersfolder] - Open printers folder
-[qt] - Open QuickTime
-[removablestorage] - Look at removable storage
-[saa] or [soundaudio] - Sounds and Audio
-[securitysystemtool] or [sst] - Open System Security Tool
+[wp] or [wordpad] - Open WordPad
+[notepad] or [np] - Open Notepad
 [task] - Task Manager
-[message] or [msg] - Self explained
-- MESSAGE - Message imput
-- IP - Device IP to send to, leave blank to leave a pop up
-[rand] - Display random numerals until WOWCAT is closed
-[checkupd] - Check for updates
-[info] - Open information log
-      return
-      ver
-      license
-      disclaimer
-[wow]
-      needed - Open all Github files needed for WOWCAT
-      other - Open all Github files for learning WOWCAT
-      read - Open Github files for copyright, disclaimer, etc.,
-      all - Open all Github files
+[msg] or [message] - Send message popup
+[com] - View this command list
+[report] - Send feedback via form
+[upd] or [update] - Check for updates
+[checkupd] - Check version silently
+[info] or [i] - Information menu
+  ver, license, disclaimer, return
+[solar] or [s] - GitHub files menu
+  needed, other, read, all
+[refresh] or [re] - Restart SOLAR
+[sys] - System tools menu
+  Device Manager, Disk Management, Services, Event Viewer
+  System Info, Control Panel, Programs, Network Connections
+[net] - Network commands menu
+  ipconfig, ping, tracert, netstat, nslookup, WiFi profiles
+[tools] - CLI utilities menu
+  systeminfo, taskkill, DISM, driverquery, powercfg
+
+
+[Any other command runs natively! Examples:
+ipconfig /all, netstat -ano, systeminfo
+devmgmt.msc, services.msc, eventvwr.msc
+diskmgmt.msc, msconfig, regedit, gpedit.msc]
