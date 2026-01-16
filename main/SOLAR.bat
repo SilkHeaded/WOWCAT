@@ -10,12 +10,9 @@ set "TMP_FILE=%TEMP%\SOLAR_update_%RANDOM%.bat"
 set "SELF=%~f0"
 set "TMP_VER=%TEMP%\SOLAR_ver_%RANDOM%.txt"
 set "UPDATE_PROMPT=1"
-set "r=goto re"
 set "permclrms=echo This color change is session-only." 
-set /a min=1
-set /a max=100
-set /a range=max-min+1
-set /a randomNumber=%RANDOM%%%range + %min%
+set "lice=https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/LICENSE"
+set "dis=https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/DISCLAIMERS.txt"
 
 :: MAY BE CHANGED (just know what you are doin)
 set "intro=%USERNAME% on SOLAR v%SOLAR_VER% #-> "
@@ -23,6 +20,17 @@ set "colorid=0b"
 set "wintitle=SOLAR for Windows 11"
 set "writingapp=notepad.exe"
 set "modecon=mode 120,40"
+:: SET THIS DIFFERENTLY IF YOU WANT TO IGNORE LINE 25
+set "warningmes=23"
+
+if "%warningmes%"=="1" (
+color 0C
+cls
+msg * /w WARNING: This app may endanger your computer if not used properly ; by clicking ahead, you have agreed to use the app considering possibilities
+msg * /w YOU HAVE BEEN WARNED
+echo ---------------------------------------------------------------------
+goto me
+)
 
 :me
 cls
@@ -30,91 +38,123 @@ color %colorid%
 %modecon%
 title %wintitle%
 SETLOCAL ENABLEDELAYEDEXPANSION
-
-echo       +--------------------------------------------------------------+
-echo       I       _________________   ____       _____ __________        I          SOLAR.bat:                                                                 I     %DATE% at %TIME%
-echo       I      /   _____/\_____  \ |    |     /  _  \\______   \       I           v%SOLAR_VER%
-echo       I      \_____  \  /   |   \|    |    /  /_\  \|       _/       I     %DATE% at %TIME%
-echo       I      /        \/    |    \    |___/    |    \    |   \       I
-echo       I     /_______  /\_______  /_______ \____|__  /____|___/       I             
-echo       I ===========================================================  I
-echo       I                    [help] - for info                         I
-echo       I                   BUGS MAY BE PRESENT                        I
-echo       +--------------------------------------------------------------+
+echo =======================================================================================================================
 echo.
-
+echo       +-------------------------------------------------------------+
+echo       I       _________________  _____       _____ __________       I        SOLAR.bat:  
+echo       I      /   _____/\_      \ \    \     /  _  \\______   \      I         v%SOLAR_VER%
+echo       I      \_____  \  /  /\   \/    /    /  /_\  \/       _/      I   %DATE% at %TIME%
+echo       I      /        \/   \/    \    \___/    \    \    /   \      I
+echo       I     /_______  /\_______  /_______ \____/__  /____\___/      I             
+echo       I =========================================================== I
+echo       I                    [help] - for info                        I
+echo       I                   BUGS MAY BE PRESENT                       I
+echo       +-------------------------------------------------------------
+echo.
+echo =======================================================================================================================
+echo.
 :re
 set "c="
 set /p c="%intro%"
-if "%c%"=="help" goto help
-if "%c%"=="leave" goto exit
-if "%c%"=="msg" goto msg
-if "%c%"=="countdown" goto command_
-if "%c%"=="brhtml" goto browser
-if "%c%"=="iamparanoid" goto iamparanoid
-if "%c%"=="clear" goto clean
-if "%c%"=="ping" goto ping
-if "%c%"=="direct" goto dir
-if "%c%"=="tasklist" goto tasklist
-if "%c%"=="shutdown" goto shutdown
-if "%c%"=="windowsdiskcheck" goto chkdsk
-if "%c%"=="upd" goto update
-if "%c%"=="update" goto update
-if "%c%"=="wdc" goto chkdsk
-if "%c%"=="systemfilecheck" goto sfc
-if "%c%"=="sfc" goto sfc
-if "%c%"=="textcolor" goto textcolor
-if "%c%"=="onscreenkeyboard" goto osk
-if "%c%"=="osk" goto osk
-if "%c%"=="calculator" goto calc
-if "%c%"=="calc" goto calc
-if "%c%"=="coinflip" goto coinflip
-if "%c%"=="mag" goto magnify
-if "%c%"=="qt" goto quicktime
-if "%c%"=="removablestorage" goto removeablestorage
-if "%c%"=="saa" goto soundandaudio
-if "%c%"=="soundaudio" goto soundandaudio
-if "%c%"=="task" goto taskmanager
-if "%c%"=="wp" goto wordpad
-if "%c%"=="wordpad" goto wordpad
-if "%c%"=="pf" goto printersfolder
-if "%c%"=="printerfolder" goto printersfolder
-if "%c%"=="report" goto report
-if "%c%"=="notepad" goto notepad
-if "%c%"=="np" goto notepad
-if "%c%"=="com" goto commands
-if "%c%"=="checkupd" goto checkversion
-if "%c%"=="rand" goto coms_
+if /i "%c%"=="help" goto help
+if /i "%c%"=="leave" goto exit
+if /i "%c%"=="msg" goto msg
+if /i "%c%"=="countdown" goto command_
+if /i "%c%"=="brhtml" goto browser
+if /i "%c%"=="iamparanoid" goto iamparanoid
+if /i "%c%"=="clear" goto clean
+if /i "%c%"=="ping" goto ping
+if /i "%c%"=="direct" goto dir
+if /i "%c%"=="tasklist" goto tasklist
+if /i "%c%"=="shutdown" goto shutdown
+if /i "%c%"=="windowsdiskcheck" goto chkdsk
+if /i "%c%"=="upd" goto update
+if /i "%c%"=="update" goto update
+if /i "%c%"=="wdc" goto chkdsk
+if /i "%c%"=="systemfilecheck" goto sfc
+if /i "%c%"=="sfc" goto sfc
+if /i "%c%"=="textcolor" goto textcolor
+if /i "%c%"=="onscreenkeyboard" goto osk
+if /i "%c%"=="info" goto info
+if /i "%c%"=="i" goto info
+if /i "%c%"=="osk" goto osk
+if /i "%c%"=="calculator" goto calc
+if /i "%c%"=="calc" goto calc
+if /i "%c%"=="coinflip" goto coinflip
+if /i "%c%"=="mag" goto magnify
+if /i "%c%"=="qt" goto quicktime
+if /i "%c%"=="removablestorage" goto removablestorage
+if /i "%c%"=="saa" goto soundsandaudio
+if /i "%c%"=="soundaudio" goto soundsandaudio
+if /i "%c%"=="task" goto taskmanager
+if /i "%c%"=="wp" goto wordpad
+if /i "%c%"=="wordpad" goto wordpad
+if /i "%c%"=="pf" goto printersfolder
+if /i "%c%"=="printerfolder" goto printersfolder
+if /i "%c%"=="report" goto report
+if /i "%c%"=="notepad" goto notepad
+if /i "%c%"=="np" goto notepad
+if /i "%c%"=="com" goto commands
+if /i "%c%"=="checkupd" goto checkversion
+if /i "%c%"=="hack" goto coms_
+if /i "%c%"=="solar" goto solar
+if /i "%c%"=="s" goto solar
+if /i "%c%"=="refresh" goto refresh
+if /i "%c%"=="re" goto refresh
+if /i "%c%"=="sys" goto sys
+if /i "%c%"=="net" goto net
+if /i "%c%"=="tools" goto tools
+if /i "%c%"=="cls" goto me
+if /i "%c%"=="whoami" whoami & goto re
+if /i "%c%"=="hostname" hostname & goto re
+if /i "%c%"=="wmic" wmic computersystem get model,name,manufacturer,totalphysicalmemory & goto re
+if /i "%c%"=="gpupdate" gpupdate /force & goto re
+if /i "%c%"=="msconfig" msconfig & goto re
+if /i "%c%"=="regedit" regedit & goto re
+if /i "%c%"=="firewall" firewall.cpl & goto re
+if /i "%c%"=="power" powercfg.cpl & goto re
+if /i "%c%"=="users" net user & goto re
+if /i "%c%"=="diskpart" diskpart & goto re
+
+%c%
+if errorlevel 1 (
+echo   ============ \ SOLAR / ============
+echo ERROR 001: Incorrect command: "%c%"
+)
+goto re
+
 echo ERROR 332: Command failed to be recognized, please use [help] or send feedback [report]
-%r%
+goto re
 
 :command_
-if "%msgw%"=echo ERROR 333: Command is valid however not yet programmed, you may become a contributor by [report]
+echo ERROR 333: Command is valid however not yet programmed, you may become a contributor by [report]
+goto re
 
 :commands
 IF EXIST "com.txt" (
     start "" "com.txt"
-    %r%
+    goto re
 ) ELSE (
 echo   ERROR 828: Unable to find "com.txt" so as fallback
 echo   ; Going to raw GitHub page...
     start "" "https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/main/com.txt"
-    %r%
+    goto re
 )
 
+
 :coms_
-set "RSTR=%random%"
-echo !RSTR:~0,10!
+echo %random%
+color 0C
 goto coms_
 
 :report
 start "" "%FORM%"
 echo Thanks for giving feedback^! :]
-%r%
+goto re
 
 :viewtemp
 explorer.exe "search-ms:query=%QUERY%&crumb=location:%FOLDER%"
-%r%
+goto re
 
 :browser
 set "q="
@@ -122,7 +162,7 @@ set /p q=#
 if "%q%"=="" (
 echo ERROR 001: No Input
 pause
-%r%
+goto re
 )
 
 echo Fetching raw HTML
@@ -131,7 +171,7 @@ if errorlevel 1 (
 echo.
 echo ERROR 344: HTML unable to download
 pause
-%r%
+goto re
 )
 
 echo.
@@ -139,7 +179,7 @@ echo Raw HTML opening in accessible HTML viewer
 
 start "" "%op%"
 echo.
-%r%
+goto re
 
 :iamparanoid
 if exist "%~f0" (
@@ -147,10 +187,19 @@ start "" notepad.exe "%~f0%"
 ) else (
 echo ERROR 264: Cannot find
 )
+goto re
 
-:clear
+:dir
+dir
+goto re
+
+:clean
 cls
-%r%
+goto me
+
+:refresh
+start "" "SOLAR.bat"
+exit
 
 :ping
 set /p host=Host or IP:
@@ -158,13 +207,13 @@ if "%host%"=="" set host=8.8.8.8
 echo Pinging %host%...
 ping %host%
 echo.
-%r%
+goto re
 
 :tasklist
 echo Listing all active tasks...
 tasklist
 echo.
-%r%
+goto re
 
 :help
 color 2
@@ -212,19 +261,19 @@ if "%shopt%"=="1" shutdown /s /t 3
 if "%shopt%"=="2" shutdown /r /t 3
 if "%shopt%"=="3" shutdown /a
 echo.
-%r%
+goto re
 
 :chkdsk
 echo Running chkdsk on system drive...
 chkdsk C:
 echo.
-%r%
+goto re
 
 :sfc
 echo Checking system file integrity...
 sfc /scannow
 echo.
-%r%
+goto re
 
 :textcolor
 echo colors:
@@ -233,165 +282,146 @@ echo + purple + yellow + white + gray
 echo + light blue + light green + light aqua
 echo + light red + light purple + light yellow
 echo + bright white
-set /p choice=Enter color:
+set /p col=Enter color:
 
-if "%c%"=="green" (color 2) & %r%
-if "%c%"=="blue" (color 1) & %r%
-if "%c%"=="red" (color 4) & %r%
-if "%c%"=="aqua" (color 3) & %r%
-if "%c%"=="purple" (color 5) & %r%
-if "%c%"=="yellow" (color 6) & %r%
-if "%c%"=="white" (color 7) & %r%
-if "%c%"=="gray" (color 8) & %r%
-if "%c%"=="light blue" (color 9) & %r%
-if "%c%"=="light green" (color A) & %r%
-if "%c%"=="light aqua" (color B) & %r%
-if "%c%"=="light red" (color C) & %r%
-if "%c%"=="light purple" (color D) & %r%
-if "%c%"=="light yellow" (color E) & %r%
-if "%c%"=="bright white" (color F) & %r%
-if "%c%"=="default" (color 0B) & %r%
+if "%col%"=="green" (color 2) & goto re
+if "%col%"=="blue" (color 1) & goto re
+if "%col%"=="red" (color 4) & goto re
+if "%col%"=="aqua" (color 3) & goto re
+if "%col%"=="purple" (color 5) & goto re
+if "%col%"=="yellow" (color 6) & goto re
+if "%col%"=="white" (color 7) & goto re
+if "%col%"=="gray" (color 8) & goto re
+if "%col%"=="light blue" (color 9) & goto re
+if "%col%"=="light green" (color A) & goto re
+if "%col%"=="light aqua" (color B) & goto re
+if "%col%"=="light red" (color C) & goto re
+if "%col%"=="light purple" (color D) & goto re
+if "%col%"=="light yellow" (color E) & goto re
+if "%col%"=="bright white" (color F) & goto re
+if "%col%"=="default" (color 0B) & goto re
 echo ERROR 236: INVALID COLOR
-%r%
+goto re
 
+:sys
+echo 1^) devmgmt.msc  - Device Manager
+echo 2^) diskmgmt.msc - Disk Management
+echo 3^) services.msc - Services
+echo 4^) eventvwr.msc - Event Viewer
+echo 5^) sysdm.cpl    - System Properties
+set /p opt=;
+if "%opt%"=="1" devmgmt.msc
+if "%opt%"=="2" diskmgmt.msc
+if "%opt%"=="3" services.msc
+if "%opt%"=="4" eventvwr.msc
+if "%opt%"=="5" sysdm.cpl
+goto re
 
-:update
-echo Downloading update...
-curl -L -A "Mozilla/5.0" "%RAW_URL%" -o "%TMP_FILE%"
+:browser
+set "q="
+set /p q=Enter URL: 
+if "%q%"=="" (
+echo ERROR 001: No Input
+pause
+goto re
+)
+set "op=%TEMP%\page_%RANDOM%.html"
+echo Fetching %q%...
+curl -L -A "Mozilla/5.0" "%q%" -o "%op%"
 if errorlevel 1 (
-echo ERROR 303: Update failed
-del "%TMP_FILE%" 2>nul
-%r%
+echo ERROR 344: HTML download failed
+pause
+goto re
 )
-echo Replacing on next run...
-copy "%TMP_FILE%" "%SELF%" >nul
-del "%TMP_FILE%" 2>nul
-echo Updated, please restart
-goto exit
-
-:checkversion
-echo Checking for updates...
-
-curl -L -s -A "Mozilla/5.0" "%VERSION_URL%" -o "%TMP_VER%" >nul 2>&1
-if errorlevel 1 (
-set /p REMOTE_VER=<"%TMP_VER%"
-del "%TMP_VER%" 2>nul
-goto :eof
-)
-
-del "%TMP_VER%" 2>nul
-
-if "%REMOTE_VER%"=="" goto :eof
-
-if not "%REMOTE_VER%"=="%SOLAR_VER%" (
-echo.
-echo ^<^< UPDATE AVAILABLE ^>^> %SOLAR_VER% -^> %REMOTE_VER%
-echo.
-)
-goto :eof
-
-
-for %%A in ("%~f0") do set "OLD_SIZE=%%~zA"
-for %%A in ("%TMP_FILE%") do set "NEW_SIZE=%%~zA"
-
-echo [%DATE% %TIME%] OLD_SIZE=%OLD_SIZE% NEW_SIZE=%NEW_SIZE% >> "%LOG_FILE%"
-
-echo Applying update on restart...
-echo [%DATE% %TIME%] Spawning helper to replace script >> "%LOG_FILE%"
-
-start "" cmd /c "\"%~dp0SOLAR_update.bat\" \"%~f0\" \"%TMP_FILE%\" \"%LOG_FILE%\""
-goto exit
+start "" "%op%"
+del "%op%" 2>nul
+goto re
 
 :osk
 osk
 echo [IF IT DID NOT OPEN, YOU MAY BE MISSING THE APP]
-%r%
+goto re
 
 :calc
 calc
 echo [IF IT DID NOT OPEN, YOU MAY BE MISSING THE APP]
-%r%
+goto re
 
 :coinflip
-
-if %randomNumber% GEQ 50 (
-echo coinflip = heads
-) else (
-echo coinflip = tails
-)
-%r%
+set /a num=%random% %% 2
+if %num%==0 (echo Heads) else (echo Tails)
+goto re
 
 :taskmanager
 taskmgr
-%r%
+goto re
 
 :wordpad
 write
 echo [IF IT DID NOT OPEN, YOU MAY BE MISSING THE APP]
-%r%
+goto re
 
 :notepad
 start notepad
 echo [IF IT DID NOT OPEN, YOU MAY BE MISSING THE APP]
-%r%
+goto re
 
 :firewall
 firewall.cpl
 echo [IF IT DID NOT OPEN, YOU MAY BE MISSING THE APP]
-%r%
+goto re
 
 :magnify
 magnify
 echo [IF IT DID NOT OPEN, YOU MAY BE MISSING THE APP]
-%r%
+goto re
 
 :util
 utilman
 echo [IF IT DID NOT OPEN, YOU MAY BE MISSING THE APP]
-%r%
+goto re
 
 :windowssystemsecuritytool
 syskey
 echo [IF IT DID NOT OPEN, YOU MAY BE MISSING THE APP]
-%r%
+goto re
 
 :soundsandaudio
 mmsys.cpl
 echo [IF IT DID NOT OPEN, YOU MAY BE MISSING THE APP]
-%r%
+goto re
 
 :removablestorage
 ntmsmgr.msc
 echo [IF IT DID NOT OPEN, YOU MAY BE MISSING THE APP]
-%r%
+goto re
 
 :quicktime
 Quicktime.cpl
 echo [IF IT DID NOT OPEN, YOU MAY BE MISSING THE APP]
-%r%
+goto re
 
 :printersfolder
 printers
 echo [IF IT DID NOT OPEN, YOU MAY BE MISSING THE APP]
-%r%
-
-:iamparanoid
-if exist "%~f0" (
-start "" notepad.exe "%~f0"
-) else (
-echo ERROR 288: Can't find SOLAR
-)
-%r%
+goto re
 
 :msg
-set /p msg=MESSAGE #
-set /p iptof=IP #
+echo.
+echo Message / Input ^(
+set /p msg= 
+echo ^)
+echo -----------------------
+echo IP Address / Output ^(
+set /p iptof= 
+echo ^)
+echo.
 if "%iptof%"=="" (
 msg * "%msg%"
 ) else (
 msg %iptof% "%msg%"
 )
-%r%
+goto re
 
 :checkversion
 set "TMP_VER=%TEMP%\SOLAR_ver_%RANDOM%.txt"
@@ -411,6 +441,143 @@ echo.
 color 0B
 )
 goto :eof
+
+:info
+set /p in=; 
+if "%in%"=="ver" echo SOLAR.bat v%SOLAR_VER% & goto re
+if "%in%"=="license" start "" "%lice%" & goto re
+if "%in%"=="disclaimer" start "" "%dis%" & goto re
+if "%in%"=="return" goto re
+echo ver ; license ; disclaimer ; return:
+goto info
+
+
+:solar
+set /p sol=; 
+if "%sol%"=="needed" goto solarneeded
+if "%sol%"=="other" goto solarother
+if "%sol%"=="read" goto solarread
+if "%sol%"=="all" goto solarall
+echo needed ; other ; read ; all
+goto solar
+
+:solarall
+start "" "https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/main/com.txt" 
+start "" "https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/LICENSE"
+start "" "https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/DISCLAIMERS.txt"
+start "" "https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/main/SOLAR.bat"
+start "" "https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/main/SOLAR_update.bat"
+start "" "https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/main/com.txt"
+start "" "https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/ignore/version.txt"
+start "" "https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/help/README.md"
+start "" "https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/help/manual.txt"
+goto re
+
+:solarread
+start "" "https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/DISCLAIMERS.txt"
+start "" "https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/help/manual.txt"
+start "" "https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/main/com.txt"
+start "" "https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/help/README.md"
+goto re
+
+:solarneeded
+start "" "https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/main/SOLAR_update.bat"
+start "" "https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/main/SOLAR.bat"
+goto re
+
+:solarother
+start "" "https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/DISCLAIMERS.txt"
+start "" "https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/ignore/version.txt"
+start "" "https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/LICENSE"
+goto re
+
+:sys
+echo ================== SYSTEM TOOLS ==================
+echo 1^) msinfo32      - System Information
+echo 2^) dxdiag        - DirectX Diagnostic Tool
+echo 3^) devmgmt.msc   - Device Manager
+echo 4^) diskmgmt.msc  - Disk Management
+echo 5^) eventvwr.msc  - Event Viewer
+echo 6^) services.msc  - Services
+echo 7^) appwiz.cpl    - Programs and Features
+echo 8^) sysdm.cpl     - System Properties
+echo 9^) control       - Control Panel
+echo 10^) cleanmgr     - Disk Cleanup
+echo 11^) resmon       - Resource Monitor
+echo 12^) taskmgr      - Task Manager
+echo 13^) mdsched      - Memory Diagnostics
+echo 14^) ncpa.cpl     - Network Connections
+echo 15^) winver       - Windows Version
+echo 0^) Return
+set /p opt=# 
+if "%opt%"=="1"  msinfo32 & goto re
+if "%opt%"=="2"  dxdiag & goto re
+if "%opt%"=="3"  devmgmt.msc & goto re
+if "%opt%"=="4"  diskmgmt.msc & goto re
+if "%opt%"=="5"  eventvwr.msc & goto re
+if "%opt%"=="6"  services.msc & goto re
+if "%opt%"=="7"  appwiz.cpl & goto re
+if "%opt%"=="8"  sysdm.cpl & goto re
+if "%opt%"=="9"  control & goto re
+if "%opt%"=="10" cleanmgr & goto re
+if "%opt%"=="11" resmon & goto re
+if "%opt%"=="12" taskmgr & goto re
+if "%opt%"=="13" mdsched & goto re
+if "%opt%"=="14" ncpa.cpl & goto re
+if "%opt%"=="15" winver & goto re
+goto re
+
+:net
+echo ================== NETWORK CMDS ==================
+echo 1^) ipconfig /all
+echo 2^) ping 8.8.8.8
+echo 3^) tracert 8.8.8.8
+echo 4^) pathping 8.8.8.8
+echo 5^) netstat -ano
+echo 6^) nslookup google.com
+echo 7^) arp -a
+echo 8^) netsh interface ipv4 show config
+echo 9^) netsh wlan show profiles
+echo 10^) netsh wlan show interfaces
+echo 0^) Return 
+set /p opt=# 
+if "%opt%"=="1"  ipconfig /all & goto re
+if "%opt%"=="2"  ping 8.8.8.8 & goto re
+if "%opt%"=="3"  tracert 8.8.8.8 & goto re
+if "%opt%"=="4"  pathping 8.8.8.8 & goto re
+if "%opt%"=="5"  netstat -ano & goto re
+if "%opt%"=="6"  nslookup google.com & goto re
+if "%opt%"=="7"  arp -a & goto re
+if "%opt%"=="8"  netsh interface ipv4 show config & goto re
+if "%opt%"=="9"  netsh wlan show profiles & goto re
+if "%opt%"=="10" netsh wlan show interfaces & goto re
+goto re
+
+:tools
+echo ================== CLI TOOLS ==================
+echo 1^) systeminfo
+echo 2^) schtasks /query
+echo 3^) tasklist
+echo 4^) taskkill /im notepad.exe /f
+echo 5^) sfc /scannow
+echo 6^) chkdsk C:
+echo 7^) dism /online /cleanup-image /scanhealth
+echo 8^) driverquery
+echo 9^) wmic logicaldisk get size,freespace,caption
+echo 10^) powercfg /energy
+echo 0^) Return
+set /p opt=#  
+if "%opt%"=="1"  systeminfo
+if "%opt%"=="2"  schtasks /query
+if "%opt%"=="3"  tasklist
+if "%opt%"=="4"  taskkill /im notepad.exe /f
+if "%opt%"=="5"  sfc /scannow
+if "%opt%"=="6"  chkdsk C:
+if "%opt%"=="7"  dism /online /cleanup-image /scanhealth
+if "%opt%"=="8"  driverquery
+if "%opt%"=="9"  wmic logicaldisk get size,freespace,caption
+if "%opt%"=="10" powercfg /energy
+goto re
 
 :exit
 exit
