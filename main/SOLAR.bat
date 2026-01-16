@@ -1,8 +1,10 @@
+:: DO NOT DELETE
 @echo off
-:: BETA: THIS VERSION IS IN BETA MEANING BUGS WILL BE PRESENT
+setlocal enabledelayedexpansion
+
 
 :: SETTINGS > EDITING ANYTHING MAY BREAK
-set "SOLAR_VER=3.5.6"
+set "SOLAR_VER=3.0.0"
 set "VERSION_URL=https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/ignore/version.txt"
 set "FORM=https://forms.office.com/Pages/ResponsePage.aspx?id=sEuKbhv9NkS8LDHpJyyrQ6Z_qm3l-9dOmHkhDfOrS-xUNUNOVlVKWklJTzNGRkwwN0FNVUREMVNDUy4u"
 set "RAW_URL=https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/main/SOLAR.bat"
@@ -20,9 +22,11 @@ set "colorid=0b"
 set "wintitle=SOLAR for Windows 11"
 set "writingapp=notepad.exe"
 set "modecon=mode 120,40"
-:: SET THIS DIFFERENTLY IF YOU WANT TO IGNORE LINE 25
+:: SET THIS TO 0 IF YOU WANT TO IGNORE LINE 25
 set "warningmes=1"
-
+:: SET THIS TO 0 IF YOU DO NOT WANT THE SOLAR LOGO UP
+:: OR YOU CAN BROWSE THE OPTIONS
+set "intromes=3"
 if "%warningmes%"=="1" (
 color 0C
 cls
@@ -37,22 +41,55 @@ cls
 color %colorid%
 %modecon%
 title %wintitle%
-SETLOCAL ENABLEDELAYEDEXPANSION
-echo =======================================================================================================================
+cls
+if "%intromes%"=="1" (
 echo.
 echo       +-------------------------------------------------------------+
-echo       I       _________________  _____       _____ __________       I        SOLAR.bat:  
-echo       I      /   _____/\_      \ \    \     /  _  \\______   \      I         v%SOLAR_VER%
-echo       I      \_____  \  /  /\   \/    /    /  /_\  \/       _/      I   %DATE% at %TIME%
+echo       I        ,d88~~\   ,88~-_   888          e      888~-_        I
+echo       I        8888     d888   \  888         d8b     888   \       I 
+echo       I        `Y88b   88888   ]  888        /Y88b    888   ]       I 
+echo       I         `Y88b, 88888   ]  888       /  Y88b   888   ]       I
+echo       I           8888  Y888   /  888      /____Y88b  888_-~        I
+echo       I        \__88P'  `88_-~    888____ /      Y88b 888 \_        I
+echo       I =========================================================== I
+echo       I                  [help] [i] [s] [com]                       I
+echo       I                   BUGS MAY BE PRESENT                       I
+echo       +-------------------------------------------------------------+
+echo.
+)
+
+if "%intromes%"=="2" (
+echo.
+echo       +-------------------------------------------------------------+
+echo       I       $$$$$$\   $$$$$$\  $$\        $$$$$$\  $$$$$$$\       I
+echo       I      $$  __$$\ $$  __$$\ $$ 8      $$  __$$\ $$  __$$\      I
+echo       I      $$ /  \_8 $$ /  $$ ($$ 8      $$ /  $$ 8$$ 8  $$ 8     I
+echo       I      \$$$$$$\  $$ 8  $$ ($$ 8      $$$$$$$$ 8$$$$$$$  /     I
+echo       I       \____$$\ $$ 8  $$ ($$ 8      $$  __$$ 8$$  __$$<      I
+echo       I      $$\   $$ 8$$ 8  $$ ($$ 8      $$ 8  $$ 8$$ 8  $$ 8     I
+echo       I      \$$$$$$  8 $$$$$$  |$$$$$$$$\ $$ 8  $$ 8$$ 8  $$ 8     I
+echo       I       \______/  \______/ \________|\__8  \__8\__8  \__8     I
+echo       I =========================================================== I
+echo       I                  [help] [i] [s] [com]                       I
+echo       I                   BUGS MAY BE PRESENT                       I
+echo       +-------------------------------------------------------------+
+echo.
+)
+
+if "%intromes%"=="3" (
+echo.
+echo       +-------------------------------------------------------------+
+echo       I       _________________  _____       _____ __________       I    
+echo       I      /   _____/\_      \ \    \     /  _  \\______   \      I     
+echo       I      \_____  \  /  /\   \/    /    /  /_\  \/       _/      I  
 echo       I      /        \/   \/    \    \___/    \    \    /   \      I
 echo       I     /_______  /\_______  /_______ \____/__  /____\___/      I             
 echo       I =========================================================== I
 echo       I                    [help] - for info                        I
 echo       I                   BUGS MAY BE PRESENT                       I
-echo       +-------------------------------------------------------------
+echo       +-------------------------------------------------------------+
 echo.
-echo =======================================================================================================================
-echo.
+)
 :re
 set "c="
 set /p c="%intro%"
@@ -141,7 +178,6 @@ echo   ; Going to raw GitHub page...
     goto re
 )
 
-
 :coms_
 echo %random%
 color 0C
@@ -158,27 +194,22 @@ goto re
 
 :browser
 set "q="
-set /p q=#
+set /p q=Enter URL: 
 if "%q%"=="" (
 echo ERROR 001: No Input
 pause
 goto re
 )
-
-echo Fetching raw HTML
-curl -L -A "Mozilla/5.0" "%l%" -o "%op%"
+set "op=%TEMP%\page_%RANDOM%.html"
+echo Fetching %q%...
+curl -L -A "Mozilla/5.0" "%q%" -o "%op%"
 if errorlevel 1 (
-echo.
-echo ERROR 344: HTML unable to download
+echo ERROR 344: HTML download failed
 pause
 goto re
 )
-
-echo.
-echo Raw HTML opening in accessible HTML viewer
-
 start "" "%op%"
-echo.
+del "%op%" 2>nul
 goto re
 
 :iamparanoid
@@ -581,7 +612,3 @@ goto re
 
 :exit
 exit
-
-
-
-
