@@ -2,7 +2,7 @@
 :: BETA: THIS VERSION IS IN BETA MEANING BUGS WILL BE PRESENT
 
 :: SETTINGS > EDITING ANYTHING MAY BREAK
-set "SOLAR_VER=3.0.0"
+set "SOLAR_VER=3.5.6"
 set "VERSION_URL=https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/ignore/version.txt"
 set "FORM=https://forms.office.com/Pages/ResponsePage.aspx?id=sEuKbhv9NkS8LDHpJyyrQ6Z_qm3l-9dOmHkhDfOrS-xUNUNOVlVKWklJTzNGRkwwN0FNVUREMVNDUy4u"
 set "RAW_URL=https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/main/SOLAR.bat"
@@ -581,6 +581,7 @@ goto re
 
 :exit
 exit
+
 
 
 
