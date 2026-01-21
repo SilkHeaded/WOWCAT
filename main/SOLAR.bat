@@ -1,10 +1,9 @@
 :: DO NOT DELETE
 @echo off
-setlocal enabledelayedexpansion
-
+setlocal enabledelayedexpansion 
 
 :: SETTINGS > EDITING ANYTHING MAY BREAK
-set "SOLAR_VER=3.0.0"
+set "SOLAR_VER=3.1.4"
 set "VERSION_URL=https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/ignore/version.txt"
 set "FORM=https://forms.office.com/Pages/ResponsePage.aspx?id=sEuKbhv9NkS8LDHpJyyrQ6Z_qm3l-9dOmHkhDfOrS-xUNUNOVlVKWklJTzNGRkwwN0FNVUREMVNDUy4u"
 set "RAW_URL=https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/main/SOLAR.bat"
@@ -17,16 +16,17 @@ set "lice=https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/LIC
 set "dis=https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/DISCLAIMERS.txt"
 
 :: MAY BE CHANGED (just know what you are doin)
-set "intro=%USERNAME% on SOLAR v%SOLAR_VER% #-> "
+set "intro=%USERNAME% #-> "
 set "colorid=0b"
-set "wintitle=SOLAR for Windows 11"
+set "wintitle= # # # # # \ SOLAR for Windows 11 / # # # # #"
 set "writingapp=notepad.exe"
-set "modecon=mode 120,40"
+set "modecon=mode 200,120"
 :: SET THIS TO 0 IF YOU WANT TO IGNORE LINE 25
-set "warningmes=1"
+set "warningmes=0"
 :: SET THIS TO 0 IF YOU DO NOT WANT THE SOLAR LOGO UP
-:: OR YOU CAN BROWSE THE OPTIONS
-set "intromes=3"
+set "intromes=1"
+
+:: +++++++++++++++++++++++++++ MAIN SCRIPT +++++++++++++++++++++++++++ 
 if "%warningmes%"=="1" (
 color 0C
 cls
@@ -63,7 +63,7 @@ echo.
 echo       +-------------------------------------------------------------+
 echo       I       $$$$$$\   $$$$$$\  $$\        $$$$$$\  $$$$$$$\       I
 echo       I      $$  __$$\ $$  __$$\ $$ 8      $$  __$$\ $$  __$$\      I
-echo       I      $$ /  \_8 $$ /  $$ ($$ 8      $$ /  $$ 8$$ 8  $$ 8     I
+echo       I      $$ /  \_8 $$ /  $$ ($$ 8      $$ /  $$ [$$ 8  $$ 8     I
 echo       I      \$$$$$$\  $$ 8  $$ ($$ 8      $$$$$$$$ 8$$$$$$$  /     I
 echo       I       \____$$\ $$ 8  $$ ($$ 8      $$  __$$ 8$$  __$$<      I
 echo       I      $$\   $$ 8$$ 8  $$ ($$ 8      $$ 8  $$ 8$$ 8  $$ 8     I
@@ -85,7 +85,7 @@ echo       I      \_____  \  /  /\   \/    /    /  /_\  \/       _/      I
 echo       I      /        \/   \/    \    \___/    \    \    /   \      I
 echo       I     /_______  /\_______  /_______ \____/__  /____\___/      I             
 echo       I =========================================================== I
-echo       I                    [help] - for info                        I
+echo       I                  [help] [i] [s] [com]                       I
 echo       I                   BUGS MAY BE PRESENT                       I
 echo       +-------------------------------------------------------------+
 echo.
@@ -94,7 +94,7 @@ echo.
 set "c="
 set /p c="%intro%"
 if /i "%c%"=="help" goto help
-if /i "%c%"=="leave" goto exit
+if /i "%c%"=="leave" exit
 if /i "%c%"=="msg" goto msg
 if /i "%c%"=="countdown" goto command_
 if /i "%c%"=="brhtml" goto browser
@@ -153,25 +153,28 @@ if /i "%c%"=="power" powercfg.cpl & goto re
 if /i "%c%"=="users" net user & goto re
 if /i "%c%"=="diskpart" diskpart & goto re
 
+:: this is the error message, change or not, I do not care
+echo +--------------------+
 %c%
+echo +--------------------+
 if errorlevel 1 (
-echo   ============ \ SOLAR / ============
-echo ERROR 001: Incorrect command: "%c%"
+echo //////////////////////
+echo SOLAR doesn't reconize either [ERROR 001]
+echo \\\\\\\\\\\\\\\\\\\\\\
 )
 goto re
 
-echo ERROR 332: Command failed to be recognized, please use [help] or send feedback [report]
-goto re
-
 :command_
-echo ERROR 333: Command is valid however not yet programmed, you may become a contributor by [report]
+echo ERROR 333: Command is valid however not yet integrated, you may become a contributor by [report]
 goto re
 
 :commands
+:: [attempts to start "com.txt"]
 IF EXIST "com.txt" (
     start "" "com.txt"
     goto re
 ) ELSE (
+:: [if the file is not found, it goes to the raw page]
 echo   ERROR 828: Unable to find "com.txt" so as fallback
 echo   ; Going to raw GitHub page...
     start "" "https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/main/com.txt"
@@ -610,6 +613,54 @@ if "%opt%"=="9"  wmic logicaldisk get size,freespace,caption
 if "%opt%"=="10" powercfg /energy
 goto re
 
-:exit
-exit
+:time
+echo %time%
+goto re
 
+:cmdextversion
+echo %CMDEXTVERSION%
+goto re
+
+:username
+echo %USERNAME%
+goto re
+
+:usernamedirector
+echo %USERPROFILE%
+goto re
+
+:storagedrive
+echo %HOMEDRIVE%
+goto re
+
+:homepath
+echo %HOMEPATH%
+goto re
+
+:os
+echo %OS%
+goto re
+
+:computername
+echo %COMPUTERNAME%
+goto re
+
+:cd
+echo %CD%
+goto re
+
+:date
+echo %DATE%
+goto re
+
+:errorlevel
+echo %ERRORLEVEL%
+goto re
+
+:random
+echo %RANDOM%
+goto re
+
+:path
+echo %PATH%
+goto re
