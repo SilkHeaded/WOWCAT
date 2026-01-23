@@ -6,8 +6,8 @@ setlocal enabledelayedexpansion
 cls
 :: }
 
-:: SETTINGS > EDITING ANYTHING MAY BREAK
-set "SOLAR_VER=3.0.0"
+:: SETTINGS > EDITING ANYTHING MAY BREAK {
+set "SOLAR_VER=4.5.2"
 set "VERSION_URL=https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/ignore/version.txt"
 set "FORM=https://forms.office.com/Pages/ResponsePage.aspx?id=sEuKbhv9NkS8LDHpJyyrQ6Z_qm3l-9dOmHkhDfOrS-xUNUNOVlVKWklJTzNGRkwwN0FNVUREMVNDUy4u"
 set "RAW_URL=https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/main/SOLAR.bat"
@@ -18,8 +18,10 @@ set "UPDATE_PROMPT=1"
 set "permclrms=echo This color change is session-only." 
 set "lice=https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/LICENSE"
 set "dis=https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/DISCLAIMERS.txt"
+:: }
 
-:: MAY BE CHANGED (just know what you are doin)
+
+:: MAY BE CHANGED (just know what you are doin) {
 set "intro=%USERNAME% #-> "
 set "colorid=0b"
 set "wintitle=SOLAR for WIN11
@@ -27,10 +29,7 @@ set "writingapp=notepad.exe"
 set "modecon=mode 200,120"
 :: SET THIS TO 0 IF YOU DO NOT WANT THE SOLAR LOGO UP
 set "intromes=1"
-
-:: PLEASE CHANGE THESE
-set "webbrowser=edge"
-
+:: }
 
 :: +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 :: +++++++++++++++++++++++++++ MAIN SCRIPT +++++++++++++++++++++++++++
@@ -548,4 +547,5 @@ set "usercmd=%c:~1%"
 echo %OS%:
 %usercmd%
 goto re
+
 
