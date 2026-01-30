@@ -18,6 +18,7 @@ set "UPDATE_PROMPT=1"
 set "permclrms=echo This color change is session-only." 
 set "lice=https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/LICENSE"
 set "dis=https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/DISCLAIMERS.txt"
+set "latestversion=curl https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/ignore/version.txt"
 :: }
 
 
@@ -29,6 +30,7 @@ set "writingapp=notepad.exe"
 set "modecon=mode 200,120"
 :: SET THIS TO 0 IF YOU DO NOT WANT THE SOLAR LOGO UP
 set "intromes=1"
+set "userhasadmin=y"
 :: }
 
 :: +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -75,7 +77,8 @@ echo.
 :re
 set "c="
 set /p c="%intro%"
-if defined c if "%c:~0,1%"=="." goto native_cmd
+if "%c:~0,1%"=="." goto native_cmd
+if "%c:~0,1%"==";" goto vi
 if /i "%c%"=="help" goto help
 if /i "%c%"=="leave" exit
 if /i "%c%"=="msg" goto msg
@@ -95,8 +98,6 @@ if /i "%c%"=="systemfilecheck" goto sfc
 if /i "%c%"=="sfc" goto sfc
 if /i "%c%"=="textcolor" goto textcolor
 if /i "%c%"=="onscreenkeyboard" goto osk
-if /i "%c%"=="info" goto info
-if /i "%c%"=="i" goto info
 if /i "%c%"=="osk" goto osk
 if /i "%c%"=="calculator" goto calc
 if /i "%c%"=="calc" goto calc
@@ -542,10 +543,63 @@ for /f "tokens=1,* delims= " %%a in ("!c!") do (
 )
 goto re
 
+:vi
+set "tmp=!c:~1!"
+for /f "tokens=* delims= " %%A in ("!tmp!") do set "tmp=%%A"
+:vi_trim_trailing
+if "!tmp!"=="" goto vi_help
+if "!tmp:~-1!"==" " (
+    set "tmp=!tmp:~0,-1!"
+    goto vi_trim_trailing
+)
+set "cmd=!tmp!"
+if not defined cmd goto vi_help
+
+if /i "!cmd!"=="ver" (
+    echo SOLAR VERSION - %SOLAR_VER%
+) else if /i "!cmd!"=="wa" (
+    echo WRITING APP - %writingapp%
+) else if /i "!cmd!"=="windowlw" (
+    echo MODE CON - %modecon%
+) else if /i "!cmd!"=="modecon" (
+    echo MODE CON - %modecon%
+) else if /i "!cmd!"=="intro" (
+    echo INTRO - %intro%
+) else if /i "!cmd!"=="clr" (
+    echo COLOR - %colorid%
+) else if /i "!cmd!"=="windowtitle" (
+    echo WINDOW TITLE - %wintitle%
+) else if /i "!cmd!"=="verlive" (
+    if /i "%userhasadmin%"=="y" (
+    	set /p "verlivec=WARNING^^! This uses [curl] so this may flag admin systems. Continue ^[Y/N^]
+		if /i "%verlivec%"=="Y" (
+                        for /f "delims=" %%v in ('curl -s https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/ignore/version.txt') do set "latestversion=%%v"
+	                echo LATEST VERSION - %%v
+    if /i "%userhasadmin%"=="n"
+	if /i "%verlivec%"=="Y" (
+            for /f "delims=" %%v in ('curl -s https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/ignore/version.txt') do set "latestversion=%%v"
+	    echo LATEST VERSION - %%v
+goto re
+) else (
+    echo ERROR: Unknown vi command ^[!cmd!^]
+)
+
+goto re
+
+:vi_help
+echo [:ver] - find SOLAR version
+echo [:wa] - find writing app
+echo [:verlive] - find the latest version
+echo [:windowlw] / [:modecon] - find the "mode" of the window AKA w + h
+echo [:intro] - "echo" AKA the message for the intro
+echo [:clr] - color for the console
+echo [:windowtitle] - title for the window
+goto re
+
+
 :native_cmd
 set "usercmd=%c:~1%"
 echo %OS%:
 %usercmd%
 goto re
-
 
