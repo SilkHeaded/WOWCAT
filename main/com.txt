@@ -1,6 +1,6 @@
-[leave] - Exit SOLAR manually
+[leave] - Exit WOWCAT manually
 [help] - Look at the manual
-[iamparanoid] - View SOLAR source code
+[iamparanoid] - View WOWCAT source code
 [clear] - Clear screen
 [ping] - Test connectivity (host or IP)
 [direct] or [dir] - List directory contents
@@ -25,9 +25,9 @@
 [checkupd] - Check version silently
 [info] or [i] - Information menu
   ver, license, disclaimer, return
-[solar] or [s] - GitHub files menu
+[WOWCAT] or [s] - GitHub files menu
   needed, other, read, all
-[refresh] or [re] - Restart SOLAR
+[refresh] or [re] - Restart WOWCAT
 [sys] - System tools menu
   Device Manager, Disk Management, Services, Event Viewer
   System Info, Control Panel, Programs, Network Connections
