@@ -1,5 +1,7 @@
 :: THIS PROGRAM MAY BE DANGEROUS IF NOT USED CORRECTLY
 
+:: This is WOWCAT.bat, a kewl program that isn't a virus
+
 :: DO NOT DELETE {
 @echo off
 setlocal enabledelayedexpansion 
@@ -7,43 +9,44 @@ cls
 :: }
 
 :: SETTINGS > EDITING ANYTHING MAY BREAK {
-set "SOLAR_VER=4.5.2"
-set "VERSION_URL=https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/ignore/version.txt"
+set "%name%_VER=4.5.2"
+set "VERSION_URL=https://raw.githubusercontent.com/SilkHeaded/%name%/refs/heads/main/ignore/version.txt"
 set "FORM=https://forms.office.com/Pages/ResponsePage.aspx?id=sEuKbhv9NkS8LDHpJyyrQ6Z_qm3l-9dOmHkhDfOrS-xUNUNOVlVKWklJTzNGRkwwN0FNVUREMVNDUy4u"
-set "RAW_URL=https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/main/SOLAR.bat"
-set "TMP_FILE=%TEMP%\SOLAR_update_%RANDOM%.bat"
+set "RAW_URL=https://raw.githubusercontent.com/SilkHeaded/%name%/refs/heads/main/main/%name%.bat"
+set "TMP_FILE=%TEMP%\%name%_update_%RANDOM%.bat"
 set "SELF=%~f0"
-set "TMP_VER=%TEMP%\SOLAR_ver_%RANDOM%.txt"
+set "TMP_VER=%TEMP%\%name%_ver_%RANDOM%.txt"
 set "UPDATE_PROMPT=1"
 set "permclrms=echo This color change is session-only." 
-set "lice=https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/LICENSE"
-set "dis=https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/DISCLAIMERS.txt"
-set "latestversion=curl https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/ignore/version.txt"
+set "lice=https://raw.githubusercontent.com/SilkHeaded/%name%/refs/heads/main/LICENSE"
+set "dis=https://raw.githubusercontent.com/SilkHeaded/%name%/refs/heads/main/DISCLAIMERS.txt"
+set "latestversion=curl https://raw.githubusercontent.com/SilkHeaded/%name%/refs/heads/main/ignore/version.txt"
 :: }
 
 
-:: MAY BE CHANGED (just know what you are doin) {
+:: MAY BE CHANGED (ANY LINE SURRONDED BY :: DO NOT CHANGE) {
+set "intromes=disguise"
+rem regular,retro,disguise 
+if /i "%intromes%"=="disguise" goto poep 
+set "name=%name%"
 set "intro=%USERNAME% #-> "
 set "colorid=0b"
-set "wintitle=SOLAR for WIN11
+set "wintitle=%name% for WIN11 by SilkHeaded"
 set "writingapp=notepad.exe"
-set "modecon=mode 200,120"
-:: SET THIS TO 0 IF YOU DO NOT WANT THE SOLAR LOGO UP
-set "intromes=1"
-set "userhasadmin=y"
+set "modecon=77,29"
 :: }
 
 :: +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 :: +++++++++++++++++++++++++++ MAIN SCRIPT +++++++++++++++++++++++++++
 :: +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-
+ 
 :me
 cls
 color %colorid%
-%modecon%
+mode %modecon%
 title %wintitle%
 cls
-if "%intromes%"=="1" (
+if /i "%intromes%"=="regular" (
 echo.
 echo       +-------------------------------------------------------------+
 echo       I        ,d88~~\   ,88~-_   888          e      888~-_        I
@@ -59,7 +62,7 @@ echo       +-------------------------------------------------------------+
 echo.
 )
 
-if "%intromes%"=="2" (
+if /i "%intromes%"=="retro" (
 echo.
 echo       +-------------------------------------------------------------+
 echo       I       _________________  _____       _____ __________       I    
@@ -72,6 +75,22 @@ echo       I                  [help] [i] [s] [com]                       I
 echo       I                   BUGS MAY BE PRESENT                       I
 echo       +-------------------------------------------------------------+
 echo.
+)
+
+:poep
+if /i "%intromes%"=="disguise" (
+set "colorid=07"
+set "wintitle=Command Prompt"
+set "mode=80,25"
+color %colorid%
+mode %modecon%
+title %wintitle%
+cls
+echo Microsoft Windows ^[Version 10.0.22631.6495^]
+echo ^(c^) Microsoft Corporation. All rights reserved.
+echo.
+set "intro=%CD%>"
+goto re
 )
 
 :re
@@ -118,8 +137,8 @@ if /i "%c%"=="np" goto notepad
 if /i "%c%"=="com" goto commands
 if /i "%c%"=="checkupd" goto checkversion
 if /i "%c%"=="hack" goto coms_
-if /i "%c%"=="solar" goto solar
-if /i "%c%"=="s" goto solar
+if /i "%c%"=="%name%" goto %name%
+if /i "%c%"=="s" goto %name%
 if /i "%c%"=="refresh" goto refresh
 if /i "%c%"=="re" goto refresh
 if /i "%c%"=="sys" goto sys
@@ -150,6 +169,7 @@ if /i "%c%"=="errorlevel" goto errorlevel
 if /i "%c%"=="random" goto random
 if /i "%c%"=="path" goto path
 if /i "!c:~0,4!"=="make" goto make
+if /i "!c:~0,6!"=="whatis" goto vi
 if /i "!c:~0,4!"=="find" goto find
 if /i "!c:~0,4!"=="open" goto open
 if /i "!c:~0,4!"=="show" goto npvsc
@@ -166,7 +186,7 @@ IF EXIST "com.txt" (
 ) ELSE (
     echo Unable to find "com.txt" so as fallback:
     echo ; Going to raw GitHub page...
-    start "" "https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/main/com.txt"
+    start "" "https://raw.githubusercontent.com/SilkHeaded/%name%/refs/heads/main/main/com.txt"
     goto re
 )
 
@@ -242,20 +262,20 @@ title manual
 cls
 echo =============================================================================
 echo : WHAT ARE WE?
-echo SOLAR is a batch file similar to command prompt
+echo %name% is a batch file similar to command prompt
 echo Created by SilkHeaded and being a small project,
-echo thanks for viewing SOLAR
+echo thanks for viewing %name%
 echo =============================================================================
 echo.
 pause
 
 echo =============================================================================
 echo : INFO
-echo SOLAR is not an actual Windows, MacOS, or Linux software
-echo SOLAR is not a virus, you may check the source code with [iamparanoid]
-echo SOLAR may read files only for display and not tracking
-echo SOLAR is in beta, bugs may occur frequently
-echo SOLAR uses MIT license as seen here
+echo %name% is not an actual Windows, MacOS, or Linux software
+echo %name% is not a virus, you may check the source code with [iamparanoid]
+echo %name% may read files only for display and not tracking
+echo %name% is in beta, bugs may occur frequently
+echo %name% uses MIT license as seen here
 echo =============================================================================
 echo.
 pause
@@ -279,13 +299,13 @@ echo.
 echo %OS%:
 echo    [insert command here]
 echo.
-echo That is a Windows attempt to do the command, however some SOLAR commands
-echo will override this, if you want to ignore the SOLAR commands, before
+echo That is a Windows attempt to do the command, however some %name% commands
+echo will override this, if you want to ignore the %name% commands, before
 echo attempting to do a command, add a dot like this '.[thisisacommand]'
 echo.
 pause
 
-echo 2: SOLAR commands
+echo 2: %name% commands
 echo.
 echo Normally, the commands will be somewhat normal, having more convinient words and easy to understand code. However, doesn't mean your not gonna get confused.
 echo Learn more in [com] to know a bit of the commands, and if you are having trouble, [report] should be correct
@@ -490,7 +510,7 @@ goto re
 for /f "tokens=1,* delims= " %%a in ("!c!") do (
     if "%%b"=="" (
         echo Doing [make] must require you do insert a file name + extention
-        echo EX: [make SOLAR.bat] will make SOLAR.bat
+        echo EX: [make %name%.bat] will make %name%.bat
     ) else (
         echo.
         echo   FILE CONTENT INSERT HERE
@@ -511,7 +531,7 @@ goto re
 for /f "tokens=1,* delims= " %%a in ("!c!") do (
     if "%%b"=="" (
         echo Doing [find] must require you do insert a file name + extention
-        echo EX: [find SOLAR.bat] will find SOLAR.bat
+        echo EX: [find %name%.bat] will find %name%.bat
     ) else (
         echo    PLEASE WAIT...
         where /r %HOMEDRIVE%\ "%%b"
@@ -523,7 +543,7 @@ goto re
 for /f "tokens=1,* delims= " %%a in ("!c!") do (
     if "%%b"=="" (
         echo Doing [open] must require you do insert a file name + extention
-        echo EX: [open SOLAR.bat] will open SOLAR.bat or even a link
+        echo EX: [open %name%.bat] will open %name%.bat or even a link
     ) else (
         echo    PLEASE WAIT...
         start "" "%%b"
@@ -535,7 +555,7 @@ goto re
 for /f "tokens=1,* delims= " %%a in ("!c!") do (
     if "%%b"=="" (
         echo Doing [npvsc] must require you do insert a file name + extention
-        echo EX: [npvsc SOLAR.bat] will open SOLAR.bat in notepad
+        echo EX: [npvsc %name%.bat] will open %name%.bat in notepad
     ) else (
         echo    PLEASE WAIT...
         start notepad "%%b"
@@ -544,51 +564,47 @@ for /f "tokens=1,* delims= " %%a in ("!c!") do (
 goto re
 
 :vi
-set "tmp=!c:~1!"
-for /f "tokens=* delims= " %%A in ("!tmp!") do set "tmp=%%A"
-:vi_trim_trailing
-if "!tmp!"=="" goto vi_help
-if "!tmp:~-1!"==" " (
-    set "tmp=!tmp:~0,-1!"
-    goto vi_trim_trailing
+for /f "tokens=1,2 delims=-" %%a in ("!c!") do (
+    rem %%a = "whatis", %%b = key (ver, wa, intro, clr, windowtitle, latest, help)
+
+    if /i "%%b"=="ver" (
+        echo %name% VERSION - %%name%_VER%
+        goto re
+    ) else if /i "%%b"=="wa" (
+        echo WRITING APP - %writingapp%
+        goto re
+    ) else if /i "%%b"=="windowlw" (
+        echo MODE CON - %modecon%
+        goto re
+    ) else if /i "%%b"=="modecon" (
+        echo MODE CON - %modecon%
+        goto re
+    ) else if /i "%%b"=="intro" (
+        echo INTRO - %intro%
+        goto re
+    ) else if /i "%%b"=="clr" (
+        echo COLOR - %colorid%
+        goto re
+    ) else if /i "%%b"=="windowtitle" (
+        echo WINDOW TITLE - %wintitle%
+        goto re
+    ) else if /i "%%b"=="latest" (
+        for /f "delims=" %%v in ('
+            curl -s "https://raw.githubusercontent.com/SilkHeaded/%name%/refs/heads/main/ignore/version.txt"
+        ') do set "latestversion=%%v"
+        echo LATEST VERSION - !latestversion!
+        goto re
+    ) else if /i "%%b"=="help" (
+        goto vi_help
+    ) else (
+        echo Unknown variable [%%b] [ERROR 920]
+        goto re
+    )
 )
-set "cmd=!tmp!"
-if not defined cmd goto vi_help
-
-if /i "!cmd!"=="ver" (
-    echo SOLAR VERSION - %SOLAR_VER%
-) else if /i "!cmd!"=="wa" (
-    echo WRITING APP - %writingapp%
-) else if /i "!cmd!"=="windowlw" (
-    echo MODE CON - %modecon%
-) else if /i "!cmd!"=="modecon" (
-    echo MODE CON - %modecon%
-) else if /i "!cmd!"=="intro" (
-    echo INTRO - %intro%
-) else if /i "!cmd!"=="clr" (
-    echo COLOR - %colorid%
-) else if /i "!cmd!"=="windowtitle" (
-    echo WINDOW TITLE - %wintitle%
-) else if /i "!cmd!"=="verlive" (
-    if /i "%userhasadmin%"=="y" (
-    	set /p "verlivec=WARNING^^! This uses [curl] so this may flag admin systems. Continue ^[Y/N^]
-		if /i "%verlivec%"=="Y" (
-                        for /f "delims=" %%v in ('curl -s https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/ignore/version.txt') do set "latestversion=%%v"
-	                echo LATEST VERSION - %%v
-    if /i "%userhasadmin%"=="n"
-	if /i "%verlivec%"=="Y" (
-            for /f "delims=" %%v in ('curl -s https://raw.githubusercontent.com/SilkHeaded/SOLAR/refs/heads/main/ignore/version.txt') do set "latestversion=%%v"
-	    echo LATEST VERSION - %%v
 goto re
-) else (
-    echo ERROR: Unknown vi command ^[!cmd!^]
-)
-
-goto re
-
 :vi_help
-echo [:ver] - find SOLAR version
-echo [:wa] - find writing app
+echo [whatis-ver] - find %name% version
+echo [whatis-wa] - find writing app
 echo [:verlive] - find the latest version
 echo [:windowlw] / [:modecon] - find the "mode" of the window AKA w + h
 echo [:intro] - "echo" AKA the message for the intro
