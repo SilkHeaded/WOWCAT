@@ -1,6 +1,15 @@
-:: THIS PROGRAM MAY BE DANGEROUS IF NOT USED CORRECTLY
+:: Hello user! if you may have been asking some questions about this VERY questionable program I got you!
 
-:: This is WOWCAT.bat, a kewl program that isn't a virus
+:: Q/A \ FAQ
+
+:: "Is this a virus?" No, however if this is used incorrectly it may harm the computer, but not intentional from the owners themselves (Silkheaded)
+:: "Can I report issues?" Yes! - https://forms.office.com/Pages/ResponsePage.aspx?id=sEuKbhv9NkS8LDHpJyyrQ6Z_qm3l-9dOmHkhDfOrS-xUNUNOVlVKWklJTzNGRkwwN0FNVUREMVNDUy4u
+:: "Is anything being recorded and may be used for information" No, I can assure you, the curl / links are for display and/or downloading INFORMATIONAL files on a designated file, this is not trojan, but as stated it could harm your computer IF NOT USED CORRECTLY
+:: "
+
+:: +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+:: +++++++++++++++++++++++++++ CONFIG AND CORE VARIABLES +++++++++++++++++++++++++++
+:: +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 :: DO NOT DELETE {
 @echo off
@@ -23,11 +32,19 @@ set "dis=https://raw.githubusercontent.com/SilkHeaded/%name%/refs/heads/main/DIS
 set "latestversion=curl https://raw.githubusercontent.com/SilkHeaded/%name%/refs/heads/main/ignore/version.txt"
 :: }
 
+:introdisguisebackup
+set "intromes=disguise"
+rem regular,retro,disguise,funny
+if /i "%intromes%"=="disguise" ( 
+goto poep
+) else (
+goto configmaybechanged
+)
 
+:configmaybechanged
 :: MAY BE CHANGED (ANY LINE SURRONDED BY :: DO NOT CHANGE) {
 set "intromes=disguise"
-rem regular,retro,disguise 
-if /i "%intromes%"=="disguise" goto poep 
+goto introdisguisebackup
 set "name=%name%"
 set "intro=%USERNAME% #-> "
 set "colorid=0b"
@@ -589,9 +606,7 @@ for /f "tokens=1,2 delims=-" %%a in ("!c!") do (
         echo WINDOW TITLE - %wintitle%
         goto re
     ) else if /i "%%b"=="latest" (
-        for /f "delims=" %%v in ('
-            curl -s "https://raw.githubusercontent.com/SilkHeaded/%name%/refs/heads/main/ignore/version.txt"
-        ') do set "latestversion=%%v"
+        for /f "delims=" %%v in ('curl -s "https://raw.githubusercontent.com/SilkHeaded/%name%/refs/heads/main/ignore/version.txt"') do set "latestversion=%%v"
         echo LATEST VERSION - !latestversion!
         goto re
     ) else if /i "%%b"=="help" (
@@ -605,11 +620,11 @@ goto re
 :vi_help
 echo [whatis-ver] - find %name% version
 echo [whatis-wa] - find writing app
-echo [:verlive] - find the latest version
-echo [:windowlw] / [:modecon] - find the "mode" of the window AKA w + h
-echo [:intro] - "echo" AKA the message for the intro
-echo [:clr] - color for the console
-echo [:windowtitle] - title for the window
+echo [whatis-verlive] - find the latest version
+echo [whatis-windowlw] / [:modecon] - find the "mode" of the window AKA w + h
+echo [whatis-intro] - "echo" AKA the message for the intro
+echo [whatis-clr] - color for the console
+echo [whatis-windowtitle] - title for the window
 goto re
 
 
@@ -618,4 +633,5 @@ set "usercmd=%c:~1%"
 echo %OS%:
 %usercmd%
 goto re
+
 
