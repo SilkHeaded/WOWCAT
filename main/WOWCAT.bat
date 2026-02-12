@@ -1,11 +1,10 @@
 :: Hello user! if you may have been asking some questions about this VERY questionable program I got you!
 
-:: Q/A \ FAQ
-
+:: Q/A \ FAQ:
 :: "Is this a virus?" No, however if this is used incorrectly it may harm the computer, but not intentional from the owners themselves (Silkheaded)
 :: "Can I report issues?" Yes! - https://forms.office.com/Pages/ResponsePage.aspx?id=sEuKbhv9NkS8LDHpJyyrQ6Z_qm3l-9dOmHkhDfOrS-xUNUNOVlVKWklJTzNGRkwwN0FNVUREMVNDUy4u
 :: "Is anything being recorded and may be used for information" No, I can assure you, the curl / links are for display and/or downloading INFORMATIONAL files on a designated file, this is not trojan, but as stated it could harm your computer IF NOT USED CORRECTLY
-:: "
+:: "Do you insert malware in this?" No, check for yourself
 
 :: +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 :: +++++++++++++++++++++++++++ CONFIG AND CORE VARIABLES +++++++++++++++++++++++++++
@@ -633,5 +632,6 @@ set "usercmd=%c:~1%"
 echo %OS%:
 %usercmd%
 goto re
+
 
 
