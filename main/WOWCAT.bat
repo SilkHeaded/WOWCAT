@@ -1,6 +1,11 @@
 ::  SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR SOLAR 
 :: #######################################################################################################################################################################################################
-
+::                                                                          @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+::                                                                          @@   _____ _____ __    _____ _____   @@
+::                                                                          @@  |   __|     |  |  |  _  | __  |  @@
+::                                                                          @@  |__   |  |  |  |__|     |    -|  @@
+::                                                                          @@  |_____|_____|_____|__|__|__|__|  @@
+::                                                                          @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 :: WHAT ARE WE:
 :: WOWCAT is a batch file simular to command prompt
 :: Created by SilkHeaded and being a small project that I reccomend not to use cuz I'm doing this for my own fun and benifit but decided that it be good to post cuz why not,
@@ -735,4 +740,5 @@ set "usercmd=%c:~1%"
 echo %OS%:
 %usercmd%
 goto re
+
 
