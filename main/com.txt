@@ -40,4 +40,6 @@
 [Any other command runs natively! Examples:
 ipconfig /all, netstat -ano, systeminfo
 devmgmt.msc, services.msc, eventvwr.msc
-diskmgmt.msc, msconfig, regedit, gpedit.msc]
+diskmgmt.msc, msconfig, regedit, gpedit.msc
+
+However this must start with .[examplewindowscommand]
