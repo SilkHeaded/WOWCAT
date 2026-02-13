@@ -6,9 +6,9 @@ Created by SilkHeaded and being a small project,
 thanks for viewing WOWCAT
 
 # INFO
-WOWCAT is not an actual Windows, MacOS, or Linux software
+WOWCAT is not an actual Windows, MacOS, or Linux native software
 
-WOWCAT is not a virus, you may check the source code with [iamparanoid]
+WOWCAT is not malware or trojan, you may check the source code with [iamparanoid]
 
 WOWCAT may read files only for display and not tracking
 
